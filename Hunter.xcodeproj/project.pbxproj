@@ -12,9 +12,13 @@
 		D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB52721FA6E00539F01 /* Experience.rcproject */; };
 		D7F7CAB82721FA6F00539F01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F7CAB72721FA6F00539F01 /* Assets.xcassets */; };
 		D7F7CABB2721FA6F00539F01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F7CABA2721FA6F00539F01 /* Preview Assets.xcassets */; };
+		E1A417F2462A19701281378C /* Pods_Hunter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A89AEF43C4320192BFD5FE24 /* Pods_Hunter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43E32F9FC8E8381C12684045 /* Pods-Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.debug.xcconfig"; sourceTree = "<group>"; };
+		5865CCCD06954C85C849C55B /* Pods-Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.release.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.release.xcconfig"; sourceTree = "<group>"; };
+		A89AEF43C4320192BFD5FE24 /* Pods_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7CAAE2721FA6E00539F01 /* Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7F7CAB32721FA6E00539F01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -28,17 +32,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A417F2462A19701281378C /* Pods_Hunter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4434635B17DCFD3FCFE3D1CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				43E32F9FC8E8381C12684045 /* Pods-Hunter.debug.xcconfig */,
+				5865CCCD06954C85C849C55B /* Pods-Hunter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D7F7CAA52721FA6E00539F01 = {
 			isa = PBXGroup;
 			children = (
 				D7F7CAB02721FA6E00539F01 /* Hunter */,
 				D7F7CAAF2721FA6E00539F01 /* Products */,
+				4434635B17DCFD3FCFE3D1CA /* Pods */,
+				DF584CFCFBDDBF7E574C7736 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +86,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		DF584CFCFBDDBF7E574C7736 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A89AEF43C4320192BFD5FE24 /* Pods_Hunter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7F7CABE2721FA6F00539F01 /* Build configuration list for PBXNativeTarget "Hunter" */;
 			buildPhases = (
+				0C94E08CC8F26A44DA951398 /* [CP] Check Pods Manifest.lock */,
 				D7F7CAAA2721FA6E00539F01 /* Sources */,
 				D7F7CAAB2721FA6E00539F01 /* Frameworks */,
 				D7F7CAAC2721FA6E00539F01 /* Resources */,
+				7F1AFF80D4CBCA2A6263D533 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +160,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C94E08CC8F26A44DA951398 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hunter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F1AFF80D4CBCA2A6263D533 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hunter/Pods-Hunter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Hunter/Pods-Hunter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hunter/Pods-Hunter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7F7CAAA2721FA6E00539F01 /* Sources */ = {
@@ -200,7 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -255,7 +323,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -267,6 +335,7 @@
 		};
 		D7F7CABF2721FA6F00539F01 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43E32F9FC8E8381C12684045 /* Pods-Hunter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -277,6 +346,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
@@ -298,6 +368,7 @@
 		};
 		D7F7CAC02721FA6F00539F01 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5865CCCD06954C85C849C55B /* Pods-Hunter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -308,6 +379,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
