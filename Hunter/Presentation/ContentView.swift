@@ -13,24 +13,43 @@ import ARCL
 
 struct ContentView: View {
     
+    @ObservedObject var viewModel: GameViewModel
+    
     @State private var showRealityView = false
-    @State private var boxesCollected = 0
     
     var body: some View {
         VStack {
-            if showRealityView {
-                ARViewContainer()
+            if showRealityView { //viewModel.distanceToNextMarker < 5.0
+                ARViewContainer().edgesIgnoringSafeArea(.all)
+            } else {
+                SceneViewContainer(viewModel: viewModel).edgesIgnoringSafeArea(.all)
             }
-            if !showRealityView {
-                SceneViewContainer()
-            }
-                //.edgesIgnoringSafeArea(.all)
             Button(action: {
                 showRealityView.toggle()
+                if !showRealityView {
+                    viewModel.proceedToNextLevel()
+                }
+                
             }) {
-                Text("Switch")
+                Text( showRealityView ? "Puzzle solved" : "I'm at the location!")
             }
-//            Text("You've collected \(boxesCollected) boxes! ")
+            Text("You're on level \(viewModel.currentLevel)")
+                .multilineTextAlignment(.center)
+            Text("Distance is \(viewModel.distanceToNextMarker) meters")
+        }
+        .onAppear {
+            self.viewModel.generateGame()
+        }
+        .alert(isPresented: $viewModel.shouldShowFinishAlert) {
+            Alert(
+                title: Text("Nice job!"),
+                message: Text("You've finished your game. New games have been unlocked for you."),
+                dismissButton: .default(
+                                Text("Start New Game"),
+                                action: {
+                                    viewModel.startNewGame()
+                                })
+            )
         }
     }
 }
@@ -53,18 +72,15 @@ struct ARViewContainer: UIViewRepresentable {
 }
 
 struct SceneViewContainer: UIViewRepresentable {
+    
+    @ObservedObject var viewModel: GameViewModel
 
     func makeUIView(context: Context) -> SceneLocationView {
 
         let sceneLocationView = SceneLocationView()
         sceneLocationView.run()
         
-        let locationManager = CLLocationManager()
-        let current: CLLocation? = locationManager.location
-        
-        let coordinate = CLLocationCoordinate2D(latitude: 52.51364861314343, longitude: 13.450571390720818)
-        let location = CLLocation(coordinate: coordinate, altitude: CLLocationDistance(current?.altitude ?? 0))
-        
+        let location = viewModel.nextMarkerLocation
 
         let squareView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
         squareView.backgroundColor = .red
@@ -80,13 +96,12 @@ struct SceneViewContainer: UIViewRepresentable {
     func updateUIView(_ uiView: SceneLocationView, context: Context) {
         print()
     }
-
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: GameViewModel())
     }
 }
 #endif

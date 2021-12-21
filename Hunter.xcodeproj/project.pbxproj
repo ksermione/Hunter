@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7AA781827284831009E00DB /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781727284831009E00DB /* LocationViewModel.swift */; };
+		D7AA781C272879BB009E00DB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781B272879BB009E00DB /* Game.swift */; };
+		D7AA781E27287D7C009E00DB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781D27287D7C009E00DB /* GameViewModel.swift */; };
 		D7F7CAB22721FA6E00539F01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */; };
 		D7F7CAB42721FA6E00539F01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB32721FA6E00539F01 /* ContentView.swift */; };
 		D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB52721FA6E00539F01 /* Experience.rcproject */; };
@@ -19,6 +22,9 @@
 		43E32F9FC8E8381C12684045 /* Pods-Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.debug.xcconfig"; sourceTree = "<group>"; };
 		5865CCCD06954C85C849C55B /* Pods-Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.release.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.release.xcconfig"; sourceTree = "<group>"; };
 		A89AEF43C4320192BFD5FE24 /* Pods_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7AA781727284831009E00DB /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		D7AA781B272879BB009E00DB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		D7AA781D27287D7C009E00DB /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		D7F7CAAE2721FA6E00539F01 /* Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7F7CAB32721FA6E00539F01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +54,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D7AA781927287994009E00DB /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D7AA781727284831009E00DB /* LocationViewModel.swift */,
+				D7AA781B272879BB009E00DB /* Game.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D7AA781A272879A9009E00DB /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D7F7CAB32721FA6E00539F01 /* ContentView.swift */,
+				D7AA781D27287D7C009E00DB /* GameViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		D7F7CAA52721FA6E00539F01 = {
 			isa = PBXGroup;
 			children = (
@@ -70,7 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */,
-				D7F7CAB32721FA6E00539F01 /* ContentView.swift */,
+				D7AA781A272879A9009E00DB /* Presentation */,
+				D7AA781927287994009E00DB /* Domain */,
 				D7F7CAB52721FA6E00539F01 /* Experience.rcproject */,
 				D7F7CAB72721FA6F00539F01 /* Assets.xcassets */,
 				D7F7CAB92721FA6F00539F01 /* Preview Content */,
@@ -209,8 +234,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F7CAB42721FA6E00539F01 /* ContentView.swift in Sources */,
+				D7AA781C272879BB009E00DB /* Game.swift in Sources */,
 				D7F7CAB22721FA6E00539F01 /* AppDelegate.swift in Sources */,
 				D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */,
+				D7AA781827284831009E00DB /* LocationViewModel.swift in Sources */,
+				D7AA781E27287D7C009E00DB /* GameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
