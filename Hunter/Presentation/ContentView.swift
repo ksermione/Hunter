@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            if showRealityView { //viewModel.distanceToNextMarker < 5.0
+            if showRealityView || viewModel.distanceToNextMarker < 5.0 { 
                 ARViewContainer().edgesIgnoringSafeArea(.all)
             } else {
                 SceneViewContainer(viewModel: viewModel).edgesIgnoringSafeArea(.all)
