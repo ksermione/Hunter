@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D733555227763499000FD6AD /* PuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555127763499000FD6AD /* PuzzleView.swift */; };
+		D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335553277A4F7B000FD6AD /* WorldView.swift */; };
+		D7335558277A5005000FD6AD /* PuzzleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335557277A5005000FD6AD /* PuzzleViewModel.swift */; };
+		D733555C277A5530000FD6AD /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555B277A5530000FD6AD /* Puzzle.swift */; };
 		D7AA781827284831009E00DB /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781727284831009E00DB /* LocationViewModel.swift */; };
 		D7AA781C272879BB009E00DB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781B272879BB009E00DB /* Game.swift */; };
 		D7AA781E27287D7C009E00DB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781D27287D7C009E00DB /* GameViewModel.swift */; };
 		D7F7CAB22721FA6E00539F01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */; };
-		D7F7CAB42721FA6E00539F01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB32721FA6E00539F01 /* ContentView.swift */; };
+		D7F7CAB42721FA6E00539F01 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB32721FA6E00539F01 /* GameView.swift */; };
 		D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = D7F7CAB52721FA6E00539F01 /* Experience.rcproject */; };
 		D7F7CAB82721FA6F00539F01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F7CAB72721FA6F00539F01 /* Assets.xcassets */; };
 		D7F7CABB2721FA6F00539F01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F7CABA2721FA6F00539F01 /* Preview Assets.xcassets */; };
@@ -22,12 +26,16 @@
 		43E32F9FC8E8381C12684045 /* Pods-Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.debug.xcconfig"; sourceTree = "<group>"; };
 		5865CCCD06954C85C849C55B /* Pods-Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.release.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.release.xcconfig"; sourceTree = "<group>"; };
 		A89AEF43C4320192BFD5FE24 /* Pods_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D733555127763499000FD6AD /* PuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleView.swift; sourceTree = "<group>"; };
+		D7335553277A4F7B000FD6AD /* WorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldView.swift; sourceTree = "<group>"; };
+		D7335557277A5005000FD6AD /* PuzzleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewModel.swift; sourceTree = "<group>"; };
+		D733555B277A5530000FD6AD /* Puzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle.swift; sourceTree = "<group>"; };
 		D7AA781727284831009E00DB /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		D7AA781B272879BB009E00DB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D7AA781D27287D7C009E00DB /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		D7F7CAAE2721FA6E00539F01 /* Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7F7CAB32721FA6E00539F01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D7F7CAB32721FA6E00539F01 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D7F7CAB52721FA6E00539F01 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		D7F7CAB72721FA6F00539F01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7F7CABA2721FA6F00539F01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -54,11 +62,47 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D7335555277A4FAD000FD6AD /* GameScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D7F7CAB32721FA6E00539F01 /* GameView.swift */,
+				D7AA781D27287D7C009E00DB /* GameViewModel.swift */,
+			);
+			path = GameScreen;
+			sourceTree = "<group>";
+		};
+		D7335556277A4FC1000FD6AD /* ARViews */ = {
+			isa = PBXGroup;
+			children = (
+				D7335559277A500B000FD6AD /* PuzzleView */,
+				D733555A277A5094000FD6AD /* WorldView */,
+			);
+			path = ARViews;
+			sourceTree = "<group>";
+		};
+		D7335559277A500B000FD6AD /* PuzzleView */ = {
+			isa = PBXGroup;
+			children = (
+				D733555127763499000FD6AD /* PuzzleView.swift */,
+				D7335557277A5005000FD6AD /* PuzzleViewModel.swift */,
+			);
+			path = PuzzleView;
+			sourceTree = "<group>";
+		};
+		D733555A277A5094000FD6AD /* WorldView */ = {
+			isa = PBXGroup;
+			children = (
+				D7335553277A4F7B000FD6AD /* WorldView.swift */,
+			);
+			path = WorldView;
+			sourceTree = "<group>";
+		};
 		D7AA781927287994009E00DB /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				D7AA781727284831009E00DB /* LocationViewModel.swift */,
 				D7AA781B272879BB009E00DB /* Game.swift */,
+				D733555B277A5530000FD6AD /* Puzzle.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -66,8 +110,8 @@
 		D7AA781A272879A9009E00DB /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				D7F7CAB32721FA6E00539F01 /* ContentView.swift */,
-				D7AA781D27287D7C009E00DB /* GameViewModel.swift */,
+				D7335556277A4FC1000FD6AD /* ARViews */,
+				D7335555277A4FAD000FD6AD /* GameScreen */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -233,8 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7F7CAB42721FA6E00539F01 /* ContentView.swift in Sources */,
+				D7F7CAB42721FA6E00539F01 /* GameView.swift in Sources */,
+				D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */,
 				D7AA781C272879BB009E00DB /* Game.swift in Sources */,
+				D7335558277A5005000FD6AD /* PuzzleViewModel.swift in Sources */,
+				D733555227763499000FD6AD /* PuzzleView.swift in Sources */,
+				D733555C277A5530000FD6AD /* Puzzle.swift in Sources */,
 				D7F7CAB22721FA6E00539F01 /* AppDelegate.swift in Sources */,
 				D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */,
 				D7AA781827284831009E00DB /* LocationViewModel.swift in Sources */,

@@ -17,7 +17,3 @@ struct Marker {
     let location: CLLocation
     let puzzle: Puzzle
 }
-
-struct Puzzle {
-    
-}
