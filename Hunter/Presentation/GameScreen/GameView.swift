@@ -18,11 +18,7 @@ struct GameView: View {
     var body: some View {
         VStack {
             
-            if viewModel.shouldShowPuzzleView {
-                PuzzleView(viewModel: PuzzleViewModel(puzzle: viewModel.nextPuzzle)).edgesIgnoringSafeArea(.all)
-            } else {
-                WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
-            }
+            viewModel.arViewToShow().edgesIgnoringSafeArea(.all)
             
             Button(action: {
                 viewModel.showPuzzleButtonPressed.toggle()

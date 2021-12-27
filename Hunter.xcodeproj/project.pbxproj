@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D733555227763499000FD6AD /* PuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555127763499000FD6AD /* PuzzleView.swift */; };
+		D733555227763499000FD6AD /* ClickPuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555127763499000FD6AD /* ClickPuzzleView.swift */; };
 		D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335553277A4F7B000FD6AD /* WorldView.swift */; };
-		D7335558277A5005000FD6AD /* PuzzleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335557277A5005000FD6AD /* PuzzleViewModel.swift */; };
+		D7335558277A5005000FD6AD /* ClickPuzzleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */; };
 		D733555C277A5530000FD6AD /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555B277A5530000FD6AD /* Puzzle.swift */; };
 		D7AA781827284831009E00DB /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781727284831009E00DB /* LocationViewModel.swift */; };
 		D7AA781C272879BB009E00DB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781B272879BB009E00DB /* Game.swift */; };
@@ -26,9 +26,9 @@
 		43E32F9FC8E8381C12684045 /* Pods-Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.debug.xcconfig"; sourceTree = "<group>"; };
 		5865CCCD06954C85C849C55B /* Pods-Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hunter.release.xcconfig"; path = "Target Support Files/Pods-Hunter/Pods-Hunter.release.xcconfig"; sourceTree = "<group>"; };
 		A89AEF43C4320192BFD5FE24 /* Pods_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D733555127763499000FD6AD /* PuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleView.swift; sourceTree = "<group>"; };
+		D733555127763499000FD6AD /* ClickPuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPuzzleView.swift; sourceTree = "<group>"; };
 		D7335553277A4F7B000FD6AD /* WorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldView.swift; sourceTree = "<group>"; };
-		D7335557277A5005000FD6AD /* PuzzleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewModel.swift; sourceTree = "<group>"; };
+		D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPuzzleViewModel.swift; sourceTree = "<group>"; };
 		D733555B277A5530000FD6AD /* Puzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle.swift; sourceTree = "<group>"; };
 		D7AA781727284831009E00DB /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		D7AA781B272879BB009E00DB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -74,19 +74,19 @@
 		D7335556277A4FC1000FD6AD /* ARViews */ = {
 			isa = PBXGroup;
 			children = (
-				D7335559277A500B000FD6AD /* PuzzleView */,
+				D7335559277A500B000FD6AD /* PuzzleViews */,
 				D733555A277A5094000FD6AD /* WorldView */,
 			);
 			path = ARViews;
 			sourceTree = "<group>";
 		};
-		D7335559277A500B000FD6AD /* PuzzleView */ = {
+		D7335559277A500B000FD6AD /* PuzzleViews */ = {
 			isa = PBXGroup;
 			children = (
-				D733555127763499000FD6AD /* PuzzleView.swift */,
-				D7335557277A5005000FD6AD /* PuzzleViewModel.swift */,
+				D733555127763499000FD6AD /* ClickPuzzleView.swift */,
+				D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */,
 			);
-			path = PuzzleView;
+			path = PuzzleViews;
 			sourceTree = "<group>";
 		};
 		D733555A277A5094000FD6AD /* WorldView */ = {
@@ -280,8 +280,8 @@
 				D7F7CAB42721FA6E00539F01 /* GameView.swift in Sources */,
 				D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */,
 				D7AA781C272879BB009E00DB /* Game.swift in Sources */,
-				D7335558277A5005000FD6AD /* PuzzleViewModel.swift in Sources */,
-				D733555227763499000FD6AD /* PuzzleView.swift in Sources */,
+				D7335558277A5005000FD6AD /* ClickPuzzleViewModel.swift in Sources */,
+				D733555227763499000FD6AD /* ClickPuzzleView.swift in Sources */,
 				D733555C277A5530000FD6AD /* Puzzle.swift in Sources */,
 				D7F7CAB22721FA6E00539F01 /* AppDelegate.swift in Sources */,
 				D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */,

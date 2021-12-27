@@ -38,37 +38,46 @@ class GameViewModel: ObservableObject {
     }
     
     var nextPuzzle: Puzzle {
-        guard game.markers.count > currentLevel else { return ClickPuzzle() }
+        guard game.markers.count > currentLevel else { return .click }
         return game.markers[currentLevel].puzzle
     }
     
+    @ViewBuilder
+    func arViewToShow() -> some View {
+        if shouldShowPuzzleView {
+            ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: nextPuzzle, delegate: self))
+        } else {
+            WorldView(viewModel: self)
+        }
+    }
+    
     func generateGame() {
-        let clickPuzzle1 = ClickPuzzle()
-        clickPuzzle1.delegate = self
         
         game = Game(markers: [
             Marker(location: CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51142381102419, longitude: 13.446427692145672),
                                         altitude: CLLocationDistance(50)),
-                   puzzle: clickPuzzle1),
+                   puzzle: .click),
             Marker(location: CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.519358, longitude: 13.464313),
                                         altitude: CLLocationDistance(50)),
-                   puzzle: ClickPuzzle())
+                   puzzle: .click)
         ])
     }
     
     func startNewGame() {
         currentLevel = 0
+        showPuzzleButtonPressed = false
         generateGame()
     }
     
     func proceedToNextLevel() {
         currentLevel += 1
+        showPuzzleButtonPressed = false
         shouldShowFinishAlert = currentLevel == game.markers.count
     }
 }
 
-extension GameViewModel: ClickPuzzleDelegate {
-    func puzzleDidTap() {
+extension GameViewModel: PuzzleDelegate {
+    func puzzleDidFinish() {
         proceedToNextLevel()
     }
 }
