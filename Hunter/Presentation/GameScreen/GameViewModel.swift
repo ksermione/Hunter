@@ -10,7 +10,7 @@ import CoreLocation
 import SwiftUI
 
 class GameViewModel: ObservableObject {
-    @Published private var game: Game = Game(markers: [])
+    @Published private var game: Game = Game(type: .click, markers: [])
     @Published var currentLevel = 0
     @Published var shouldShowFinishAlert = false
     @Published var showPuzzleButtonPressed = false
@@ -21,7 +21,7 @@ class GameViewModel: ObservableObject {
         if let nextMarkerLocation = nextMarkerLocation {
             return Double(locationViewModel.updatedLocation?.distance(from: nextMarkerLocation) ?? 0.0)
         } else {
-            return 0.0
+            return 1000.0
         }
     }
     
@@ -38,7 +38,7 @@ class GameViewModel: ObservableObject {
     }
     
     var nextPuzzle: Puzzle {
-        guard game.markers.count > currentLevel else { return .click }
+        guard game.markers.count > currentLevel else { return ClickPuzzle() }
         return game.markers[currentLevel].puzzle
     }
     
@@ -53,13 +53,14 @@ class GameViewModel: ObservableObject {
     
     func generateGame() {
         
-        game = Game(markers: [
+        game = Game(type: .click,
+                    markers: [
             Marker(location: CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51142381102419, longitude: 13.446427692145672),
                                         altitude: CLLocationDistance(50)),
-                   puzzle: .click),
+                   puzzle: ClickPuzzle()),
             Marker(location: CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.519358, longitude: 13.464313),
                                         altitude: CLLocationDistance(50)),
-                   puzzle: .click)
+                   puzzle: ClickPuzzle())
         ])
     }
     

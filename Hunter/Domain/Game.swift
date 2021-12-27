@@ -9,8 +9,15 @@ import Foundation
 import CoreLocation
 
 struct Game {
-//    let level: Int
+    let type: GameType
     let markers: [Marker]
+}
+
+enum GameType {
+    case click
+    case cards
+    case guess
+    case trivia
 }
 
 struct Marker {
