@@ -30,7 +30,7 @@ struct GameView: View {
             }
             Text("You're on level \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
                 .multilineTextAlignment(.center)
-            Text("Distance is \(viewModel.distanceToNextMarker) meters")
+//            Text("Distance is \(viewModel.visualDistanceToNextMarker) meters")
         }
         .onAppear {
             self.viewModel.generateGame()

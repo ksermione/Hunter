@@ -17,12 +17,25 @@ class GameViewModel: ObservableObject {
     
     private let locationViewModel = LocationViewModel()
     
-    var distanceToNextMarker: Double {
+    var distanceToNextMarker: Double { // in meters
         if let nextMarkerLocation = nextMarkerLocation {
-            return Double(locationViewModel.updatedLocation?.distance(from: nextMarkerLocation) ?? 0.0)
+            return Double(locationViewModel.updatedLocation?.distance(from: nextMarkerLocation) ?? 1000.0)
         } else {
             return 1000.0
         }
+    }
+    
+    var visualDistanceToNextMarker: Double {
+        var dist = distanceToNextMarker
+        if dist >= 1000.0 {
+            dist = dist / 1000
+        }
+        
+        return dist.rounded(toPlaces: 1)
+    }
+    
+    var visualDistanceUnit: String {
+        distanceToNextMarker >= 1000.0 ? "km" : "m"
     }
     
     var nextMarkerLocation: CLLocation? {
