@@ -13,10 +13,16 @@ import ARCL
 
 struct GameView: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var viewModel: GameViewModel
     
     var body: some View {
+        
         VStack {
+            Button("Finish Game") {
+                presentationMode.wrappedValue.dismiss()
+            }
             
             viewModel.arViewToShow().edgesIgnoringSafeArea(.all)
             
@@ -26,11 +32,10 @@ struct GameView: View {
                     viewModel.proceedToNextLevel()
                 }
             }) {
-                Text( viewModel.shouldShowPuzzleView ? "Puzzle solved" : "I'm at the location!")
+                Text( viewModel.shouldShowPuzzleView ? "Box Collected" : "I'm at the location!")
             }
             Text("You're on level \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
                 .multilineTextAlignment(.center)
-//            Text("Distance is \(viewModel.visualDistanceToNextMarker) meters")
         }
         .onAppear {
             self.viewModel.generateGame()
@@ -38,11 +43,11 @@ struct GameView: View {
         .alert(isPresented: $viewModel.shouldShowFinishAlert) {
             Alert(
                 title: Text("Nice job!"),
-                message: Text("You've finished your game. New games have been unlocked for you."),
+                message: Text("You've finished your game."),
                 dismissButton: .default(
-                                Text("Start New Game"),
+                                Text("OK"),
                                 action: {
-                                    viewModel.startNewGame()
+                                    presentationMode.wrappedValue.dismiss()
                                 })
             )
         }
@@ -53,7 +58,7 @@ struct GameView: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        GameView(viewModel: GameViewModel())
+        GameView(viewModel: GameViewModel(.friedrichshain, .click, 1))
     }
 }
 #endif
