@@ -15,7 +15,7 @@ class GameViewModel: ObservableObject {
     @Published var shouldShowFinishAlert = false
     @Published var showPuzzleButtonPressed = false
     
-    private let locationViewModel = LocationViewModel()
+    var locationManager: LocationManager?
     private let neighbourhood: Neighbourhood
     private let gameType: GameType
     private let numberOfLocations: Int
@@ -28,23 +28,10 @@ class GameViewModel: ObservableObject {
     
     var distanceToNextMarker: Double { // in meters
         if let nextMarkerLocation = nextMarkerLocation {
-            return Double(locationViewModel.updatedLocation?.distance(from: nextMarkerLocation) ?? 1000.0)
+            return Double(locationManager?.updatedLocation?.distance(from: nextMarkerLocation) ?? 1000.0)
         } else {
             return 1000.0
         }
-    }
-    
-    var visualDistanceToNextMarker: Double {
-        var dist = distanceToNextMarker
-        if dist >= 1000.0 {
-            dist = dist / 1000
-        }
-        
-        return dist.rounded(toPlaces: 1)
-    }
-    
-    var visualDistanceUnit: String {
-        distanceToNextMarker >= 1000.0 ? "km" : "m"
     }
     
     var nextMarkerLocation: CLLocation? {
@@ -53,19 +40,6 @@ class GameViewModel: ObservableObject {
     
     var levelsAmount: Int {
         game.locations.count
-    }
-    
-    var shouldShowPuzzleView: Bool {
-        showPuzzleButtonPressed || distanceToNextMarker < 5.0
-    }
-    
-    @ViewBuilder
-    func arViewToShow() -> some View {
-        if shouldShowPuzzleView {
-            ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: self))
-        } else {
-            WorldView(viewModel: self)
-        }
     }
     
     func generateGame() {
@@ -87,21 +61,10 @@ class GameViewModel: ObservableObject {
         
         game = Game(type: gameType, locations: locations)
         
-//        game = Game(type: gameType,
-//                    markers: [
-//            Marker(location: CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51142381102419, longitude: 13.446427692145672),
-//                                        altitude: CLLocationDistance(100)),
-//                   puzzle: ClickPuzzle()),
-//            Marker(location: CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.519358, longitude: 13.464313),
-//                                        altitude: CLLocationDistance(100)),
-//                   puzzle: ClickPuzzle())
+        
+//        game = Game(type: .click, locations: [
+//            CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.513615, longitude: 13.453161), altitude: CLLocationDistance(100))
 //        ])
-    }
-    
-    func startNewGame() {
-        currentLevel = 0
-        showPuzzleButtonPressed = false
-        generateGame()
     }
     
     func proceedToNextLevel() {

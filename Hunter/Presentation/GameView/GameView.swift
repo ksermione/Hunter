@@ -16,6 +16,7 @@ struct GameView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: GameViewModel
+    @StateObject var locationManager = LocationManager()
     
     var body: some View {
         
@@ -24,17 +25,23 @@ struct GameView: View {
                 presentationMode.wrappedValue.dismiss()
             }
             
-            viewModel.arViewToShow().edgesIgnoringSafeArea(.all)
-            
-            Button(action: {
-                viewModel.showPuzzleButtonPressed.toggle()
-                if !viewModel.showPuzzleButtonPressed {
-                    viewModel.proceedToNextLevel()
-                }
-            }) {
-                Text( viewModel.shouldShowPuzzleView ? "Box Collected" : "I'm at the location!")
+            if viewModel.showPuzzleButtonPressed || (locationManager.distance(to: viewModel.nextMarkerLocation) < 5.0) {
+                ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: viewModel)).edgesIgnoringSafeArea(.all)
+            } else {
+                WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
             }
-            Text("You're on level \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
+            
+//            Button(action: {
+//                viewModel.showPuzzleButtonPressed.toggle()
+//                if !viewModel.showPuzzleButtonPressed {
+//                    viewModel.proceedToNextLevel()
+//                }
+//            }) {
+//                Text( viewModel.shouldShowPuzzleView ? "Box Collected" : "I'm at the location!")
+//            }
+
+            
+            Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
                 .multilineTextAlignment(.center)
         }
         .onAppear {
