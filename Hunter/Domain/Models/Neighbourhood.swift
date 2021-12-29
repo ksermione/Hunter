@@ -17,15 +17,22 @@ enum Neighbourhood: String {
         switch self {
         case .friedrichshain:
             return [
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511780, longitude: 13.447278), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514736, longitude: 13.453595), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.510811, longitude: 13.459893), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.516879, longitude: 13.441221), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.521229, longitude: 13.450614), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.517331, longitude: 13.444411), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.515833, longitude: 13.448728), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.510603, longitude: 13.464341), altitude: CLLocationDistance(100)),
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.518332, longitude: 13.453958), altitude: CLLocationDistance(100)),
+                // all of fhain
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511780, longitude: 13.447278), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514736, longitude: 13.453595), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.510811, longitude: 13.459893), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.516879, longitude: 13.441221), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.521229, longitude: 13.450614), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.517331, longitude: 13.444411), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.515833, longitude: 13.448728), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.510603, longitude: 13.464341), altitude: CLLocationDistance(100)),
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.518332, longitude: 13.453958), altitude: CLLocationDistance(100)),
+                
+                // local ones for testing
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511687, longitude: 13.447388), altitude: CLLocationDistance(100)),
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.512910, longitude: 13.450392), altitude: CLLocationDistance(100)),
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.513399, longitude: 13.447585), altitude: CLLocationDistance(100)),
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514834, longitude: 13.450078), altitude: CLLocationDistance(100)),
             ]
         case .pBerg:
             return []
