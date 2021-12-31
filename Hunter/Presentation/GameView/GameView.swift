@@ -20,29 +20,25 @@ struct GameView: View {
     
     var body: some View {
         
-        VStack {
-            Button("Finish Game") {
-                presentationMode.wrappedValue.dismiss()
-            }
+        ZStack {
             
             if viewModel.showPuzzleButtonPressed || (locationManager.distance(to: viewModel.nextMarkerLocation) < 5.0) {
                 ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: viewModel)).edgesIgnoringSafeArea(.all)
             } else {
                 WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
             }
-            
-//            Button(action: {
-//                viewModel.showPuzzleButtonPressed.toggle()
-//                if !viewModel.showPuzzleButtonPressed {
-//                    viewModel.proceedToNextLevel()
-//                }
-//            }) {
-//                Text( viewModel.shouldShowPuzzleView ? "Box Collected" : "I'm at the location!")
-//            }
 
-            
-            Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
-                .multilineTextAlignment(.center)
+            VStack {
+                Spacer()
+                Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
+                    .multilineTextAlignment(.center)
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Text("Finish Game")
+                        
+                }
+            }
         }
         .onAppear {
             self.viewModel.generateGame()
@@ -69,3 +65,13 @@ struct ContentView_Previews : PreviewProvider {
     }
 }
 #endif
+
+
+//            Button(action: {
+//                viewModel.showPuzzleButtonPressed.toggle()
+//                if !viewModel.showPuzzleButtonPressed {
+//                    viewModel.proceedToNextLevel()
+//                }
+//            }) {
+//                Text( viewModel.shouldShowPuzzleView ? "Box Collected" : "I'm at the location!")
+//            }
