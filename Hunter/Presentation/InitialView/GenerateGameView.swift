@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct GenerateGameView: View {
-    
+        
     @State private var showNeighbourhoods = false
     @State private var selectedNeighbourhood = Neighbourhood.friedrichshainTest
     
@@ -102,7 +102,6 @@ struct GenerateGameView: View {
             }
             if showNumberOfLocations == true {
                 Picker("", selection: $selectedNumberOfLocations) {
-                    
                     ForEach(1 ..< Game.locations(for: selectedTypeOfGame, neighbourhood: selectedNeighbourhood).count + 1, id:\.self) { i in
                         Text("\(i) locations").tag(i)
                     }

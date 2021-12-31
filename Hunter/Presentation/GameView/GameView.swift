@@ -16,6 +16,7 @@ struct GameView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: GameViewModel
+    
     @StateObject var locationManager = LocationManager()
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -24,7 +25,7 @@ struct GameView: View {
         
         ZStack {
             
-            if viewModel.showPuzzleButtonPressed || (locationManager.distance(to: viewModel.nextMarkerLocation) < 5.0) {
+            if viewModel.showPuzzleButtonPressed || (locationManager.distance(to: viewModel.nextMarkerLocation) < 15.0) {
                 ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: viewModel)).edgesIgnoringSafeArea(.all)
             } else {
                 WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)

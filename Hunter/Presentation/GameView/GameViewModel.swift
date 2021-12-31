@@ -20,7 +20,7 @@ class GameViewModel: ObservableObject {
     @Published var secondsRemaining: Int = 0
     @Published var shouldShowTimeFailedAlert = false
     
-    var locationManager: LocationManager?
+//    var locationManager: LocationManager = LocationManager()
     private let neighbourhood: Neighbourhood
     let gameType: GameType
     private let numberOfLocations: Int
@@ -29,14 +29,6 @@ class GameViewModel: ObservableObject {
         self.neighbourhood = neighbourhood
         self.gameType = gameType
         self.numberOfLocations = numberOfLocations
-    }
-    
-    var distanceToNextMarker: Double { // in meters
-        if let nextMarkerLocation = nextMarkerLocation {
-            return Double(locationManager?.updatedLocation?.distance(from: nextMarkerLocation) ?? 1000.0)
-        } else {
-            return 1000.0
-        }
     }
     
     var nextMarkerLocation: CLLocation? {
@@ -77,7 +69,18 @@ class GameViewModel: ObservableObject {
     
     private func setupTimer() {
 //        secondsRemaining = 10
-        secondsRemaining = game.locations.count * 400
+//        secondsRemaining = game.locations.count * 400
+//        let loc = locationManager.updatedLocation
+        var seconds = 200
+        
+        for index in 0..<(numberOfLocations-1) {
+            let currentCoor = game.locations[index]
+            let nextCoor = game.locations[index+1]
+
+            let distanceInMeters = currentCoor.distance(from: nextCoor)
+            seconds += Int(distanceInMeters)
+        }
+        secondsRemaining = seconds
     }
     
     func proceedToNextLevel() {
