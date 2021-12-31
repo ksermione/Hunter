@@ -15,9 +15,13 @@ class GameViewModel: ObservableObject {
     @Published var shouldShowFinishAlert = false
     @Published var showPuzzleButtonPressed = false
     
+    // Timed Game
+    var timer: Timer?
+    @Published var secondsRemaining: Int = 0
+    
     var locationManager: LocationManager?
     private let neighbourhood: Neighbourhood
-    private let gameType: GameType
+    let gameType: GameType
     private let numberOfLocations: Int
     
     init(_ neighbourhood: Neighbourhood, _ gameType: GameType, _ numberOfLocations: Int) {
@@ -60,11 +64,19 @@ class GameViewModel: ObservableObject {
         }
         
         game = Game(type: gameType, locations: locations)
+
+        switch gameType {
+        case .timed:
+            setupTimer()
+        default:
+            break
+        }
         
-        
-//        game = Game(type: .click, locations: [
-//            CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.513615, longitude: 13.453161), altitude: CLLocationDistance(100))
-//        ])
+    }
+    
+    private func setupTimer() {
+        secondsRemaining = locations.count * 300
+//        if neighbourhood == .
     }
     
     func proceedToNextLevel() {

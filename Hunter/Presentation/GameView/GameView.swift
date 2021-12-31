@@ -18,6 +18,8 @@ struct GameView: View {
     @ObservedObject var viewModel: GameViewModel
     @StateObject var locationManager = LocationManager()
     
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         
         ZStack {
@@ -32,6 +34,15 @@ struct GameView: View {
                 Spacer()
                 Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
                     .multilineTextAlignment(.center)
+                if viewModel.gameType == .timed {
+                    Text("\(viewModel.secondsRemaining / 60) min \(viewModel.secondsRemaining % 60) sec remaining")
+                                .onReceive(timer) { _ in
+                                    if viewModel.secondsRemaining > 0 {
+                                        viewModel.secondsRemaining -= 1
+                                    }
+                                }
+                }
+                
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {

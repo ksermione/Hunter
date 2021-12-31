@@ -58,6 +58,15 @@ struct GenerateGameView: View {
                 
             }
             
+            switch selectedTypeOfGame {
+            case .click:
+                Text("In a Click & Collect game you are showed the marker for the next location, once you reach it, you need to collect a box, and you will see your next marker. No time limit, no pressure.")
+            case .timed:
+                Text("In a Timed game, there is a limited amount of time to collect all the boxes. If the time runs out, the game is lost and reset to the first marker.")
+            default:
+                Text("")
+            }
+            
             Spacer()
             
             Button(action: {
@@ -75,9 +84,6 @@ struct GenerateGameView: View {
                     GameView(viewModel: GameViewModel(selectedNeighbourhood, selectedTypeOfGame, selectedNumberOfLocations))
                 })
             
-            
-            
-            Spacer()
             if showNeighbourhoods == true {
                 Picker("", selection: $selectedNeighbourhood) {
                     Text("\(Neighbourhood.friedrichshainFar.rawValue)").tag(Neighbourhood.friedrichshainFar)
@@ -90,7 +96,7 @@ struct GenerateGameView: View {
             if showTypeOfGame == true {
                 Picker("", selection: $selectedTypeOfGame) {
                     Text("Click & Collect").tag(GameType.click)
-//                    Text("Timed Game").tag(GameType.timed)
+                    Text("Timed Game").tag(GameType.timed)
 //                    Text("Trivia").tag(GameType.trivia)
 //                    Text("Cards").tag(GameType.cards)
                 }
