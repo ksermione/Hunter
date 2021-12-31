@@ -18,6 +18,7 @@ class GameViewModel: ObservableObject {
     // Timed Game
     var timer: Timer?
     @Published var secondsRemaining: Int = 0
+    @Published var shouldShowTimeFailedAlert = false
     
     var locationManager: LocationManager?
     private let neighbourhood: Neighbourhood
@@ -47,11 +48,11 @@ class GameViewModel: ObservableObject {
     }
     
     func generateGame() {
-        
+        let neiLocs = Game.locations(for: gameType, neighbourhood: neighbourhood)
         var locations: [CLLocation] = []
         for _ in 1...numberOfLocations {
-            let randomIndex = Int.random(in: 0..<(neighbourhood.locations.count - 1))
-            let randomLocation = neighbourhood.locations[randomIndex]
+            let randomIndex = Int.random(in: 0..<(neiLocs.count - 1))
+            let randomLocation = neiLocs[randomIndex]
             var alreadyUsed: Bool = false
             locations.forEach { loc in
                 if loc == randomLocation {
@@ -75,8 +76,8 @@ class GameViewModel: ObservableObject {
     }
     
     private func setupTimer() {
-        secondsRemaining = locations.count * 300
-//        if neighbourhood == .
+//        secondsRemaining = 10
+        secondsRemaining = game.locations.count * 400
     }
     
     func proceedToNextLevel() {

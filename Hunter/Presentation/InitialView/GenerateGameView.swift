@@ -86,8 +86,7 @@ struct GenerateGameView: View {
             
             if showNeighbourhoods == true {
                 Picker("", selection: $selectedNeighbourhood) {
-                    Text("\(Neighbourhood.friedrichshainFar.rawValue)").tag(Neighbourhood.friedrichshainFar)
-                    Text("\(Neighbourhood.friedrichshainNear.rawValue)").tag(Neighbourhood.friedrichshainNear)
+                    Text("\(Neighbourhood.friedrichshain.rawValue)").tag(Neighbourhood.friedrichshain)
                     Text("\(Neighbourhood.friedrichshainTest.rawValue)").tag(Neighbourhood.friedrichshainTest)
 //                    Text("Pberg").tag(Neighbourhood.pBerg)
 //                    Text("Mitte").tag(Neighbourhood.mitte)
@@ -103,7 +102,8 @@ struct GenerateGameView: View {
             }
             if showNumberOfLocations == true {
                 Picker("", selection: $selectedNumberOfLocations) {
-                    ForEach(1 ..< (selectedNeighbourhood.locations.count + 1), id:\.self) { i in
+                    
+                    ForEach(1 ..< Game.locations(for: selectedTypeOfGame, neighbourhood: selectedNeighbourhood).count + 1, id:\.self) { i in
                         Text("\(i) locations").tag(i)
                     }
                 }

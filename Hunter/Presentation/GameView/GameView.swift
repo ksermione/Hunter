@@ -39,6 +39,8 @@ struct GameView: View {
                                 .onReceive(timer) { _ in
                                     if viewModel.secondsRemaining > 0 {
                                         viewModel.secondsRemaining -= 1
+                                    } else {
+                                        viewModel.shouldShowTimeFailedAlert = true
                                     }
                                 }
                 }
@@ -59,11 +61,22 @@ struct GameView: View {
                 title: Text("Nice job!"),
                 message: Text("You've finished your game."),
                 dismissButton: .default(
-                                Text("OK"),
+                                Text("Quit"),
                                 action: {
                                     presentationMode.wrappedValue.dismiss()
                                 })
             )
+        }
+        .alert(isPresented: $viewModel.shouldShowTimeFailedAlert) {
+            Alert(
+                title: Text("Oh no...."),
+                message: Text("Unfortunately you weren't fast enough :/"),
+                dismissButton: .default(
+                                Text("Quit"),
+                                action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                })
+                )
         }
     }
     
