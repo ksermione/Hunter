@@ -11,7 +11,7 @@ import SwiftUI
 struct GenerateGameView: View {
     
     @State private var showNeighbourhoods = false
-    @State private var selectedNeighbourhood = Neighbourhood.friedrichshain
+    @State private var selectedNeighbourhood = Neighbourhood.friedrichshainTest
     
     @State private var showNumberOfLocations = false
     @State private var selectedNumberOfLocations = 1
@@ -80,7 +80,9 @@ struct GenerateGameView: View {
             Spacer()
             if showNeighbourhoods == true {
                 Picker("", selection: $selectedNeighbourhood) {
-                    Text("Fhain").tag(Neighbourhood.friedrichshain)
+                    Text("\(Neighbourhood.friedrichshainFar.rawValue)").tag(Neighbourhood.friedrichshainFar)
+                    Text("\(Neighbourhood.friedrichshainNear.rawValue)").tag(Neighbourhood.friedrichshainNear)
+                    Text("\(Neighbourhood.friedrichshainTest.rawValue)").tag(Neighbourhood.friedrichshainTest)
 //                    Text("Pberg").tag(Neighbourhood.pBerg)
 //                    Text("Mitte").tag(Neighbourhood.mitte)
                 }

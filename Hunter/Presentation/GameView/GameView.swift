@@ -35,7 +35,7 @@ struct GameView: View {
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Text("Finish Game")
+                    Text("Cancel Game")
                         
                 }
             }
@@ -61,7 +61,7 @@ struct GameView: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        GameView(viewModel: GameViewModel(.friedrichshain, .click, 1))
+        GameView(viewModel: GameViewModel(.friedrichshainTest, .click, 1))
     }
 }
 #endif
