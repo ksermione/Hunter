@@ -13,7 +13,7 @@ class GameViewModel: ObservableObject {
     @Published private var game: Game = Game(type: .click, locations: [])
     @Published var currentLevel = 0
     @Published var shouldShowFinishAlert = false
-//    @Published var showPuzzleButtonPressed = false
+    @Published var showPuzzleButtonPressed = false
     
     // Timed Game
     var timer: Timer?
@@ -78,11 +78,11 @@ class GameViewModel: ObservableObject {
     }
     
     func proceedToNextLevel() {
-        if currentLevel < numberOfLocations {
+        if (currentLevel+1) < numberOfLocations {
             currentLevel += 1
         }
-//        showPuzzleButtonPressed = false
-        shouldShowFinishAlert = currentLevel == numberOfLocations
+        showPuzzleButtonPressed = false
+        shouldShowFinishAlert = (currentLevel + 1) == numberOfLocations
     }
 }
 

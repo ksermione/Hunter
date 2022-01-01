@@ -25,7 +25,7 @@ struct GameView: View {
         
         ZStack {
             
-            if (locationManager.distance(to: viewModel.nextMarkerLocation) < 15.0) {
+            if (locationManager.distance(to: viewModel.nextMarkerLocation) < 15.0) || viewModel.showPuzzleButtonPressed {
                 ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: viewModel)).edgesIgnoringSafeArea(.all)
             } else {
                 WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
@@ -33,6 +33,16 @@ struct GameView: View {
 
             VStack {
                 Spacer()
+                
+                            Button(action: {
+                                viewModel.showPuzzleButtonPressed.toggle()
+                                if !viewModel.showPuzzleButtonPressed {
+                                    viewModel.proceedToNextLevel()
+                                }
+                            }) {
+                                Text( viewModel.showPuzzleButtonPressed ? "Box Collected" : "I'm at the location!")
+                            }
+                
                 Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.numberOfLocations).")
                     .multilineTextAlignment(.center)
                 if viewModel.gameType == .timed {
@@ -53,6 +63,17 @@ struct GameView: View {
                         
                 }
             }
+            .alert(isPresented: $viewModel.shouldShowTimeFailedAlert) {
+                Alert(
+                    title: Text("Oh no...."),
+                    message: Text("Unfortunately you weren't fast enough :/"),
+                    dismissButton: .default(
+                                    Text("Quit"),
+                                    action: {
+                                        presentationMode.wrappedValue.dismiss()
+                                    })
+                    )
+            }
         }
         .onAppear {
             self.viewModel.generateGame()
@@ -68,17 +89,6 @@ struct GameView: View {
                                 })
             )
         }
-        .alert(isPresented: $viewModel.shouldShowTimeFailedAlert) {
-            Alert(
-                title: Text("Oh no...."),
-                message: Text("Unfortunately you weren't fast enough :/"),
-                dismissButton: .default(
-                                Text("Quit"),
-                                action: {
-                                    presentationMode.wrappedValue.dismiss()
-                                })
-                )
-        }
     }
     
 }
@@ -92,11 +102,4 @@ struct ContentView_Previews : PreviewProvider {
 #endif
 
 
-//            Button(action: {
-//                viewModel.showPuzzleButtonPressed.toggle()
-//                if !viewModel.showPuzzleButtonPressed {
-//                    viewModel.proceedToNextLevel()
-//                }
-//            }) {
-//                Text( viewModel.shouldShowPuzzleView ? "Box Collected" : "I'm at the location!")
-//            }
+
