@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Create the SwiftUI view that provides the window contents.
 //        let contentView = GameView(viewModel: GameViewModel())
-        
         let contentView = InitialView()
 
         // Use a UIHostingController as window root view controller.

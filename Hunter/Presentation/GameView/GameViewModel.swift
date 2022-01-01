@@ -13,50 +13,41 @@ class GameViewModel: ObservableObject {
     @Published private var game: Game = Game(type: .click, locations: [])
     @Published var currentLevel = 0
     @Published var shouldShowFinishAlert = false
-    @Published var showPuzzleButtonPressed = false
+//    @Published var showPuzzleButtonPressed = false
     
     // Timed Game
     var timer: Timer?
     @Published var secondsRemaining: Int = 0
     @Published var shouldShowTimeFailedAlert = false
     
-//    var locationManager: LocationManager = LocationManager()
+    let locationManager: LocationManager //= LocationManager()
     private let neighbourhood: Neighbourhood
     let gameType: GameType
-    private let numberOfLocations: Int
+    @Published var numberOfLocations: Int
     
-    init(_ neighbourhood: Neighbourhood, _ gameType: GameType, _ numberOfLocations: Int) {
+    init(_ neighbourhood: Neighbourhood, _ gameType: GameType, _ numberOfLocations: Int, locationManager: LocationManager) {
         self.neighbourhood = neighbourhood
         self.gameType = gameType
-        self.numberOfLocations = numberOfLocations
+        
+        let maxLocCount = Game.locations(for: gameType, neighbourhood: neighbourhood).count
+        self.numberOfLocations = numberOfLocations <= maxLocCount ? numberOfLocations : maxLocCount
+        
+        self.locationManager = locationManager
     }
     
     var nextMarkerLocation: CLLocation? {
         return (game.locations.count > 0 && currentLevel < game.locations.count ) ? game.locations[currentLevel] : nil
     }
     
-    var levelsAmount: Int {
-        game.locations.count
-    }
-    
     func generateGame() {
         let neiLocs = Game.locations(for: gameType, neighbourhood: neighbourhood)
         var locations: [CLLocation] = []
-        for _ in 1...numberOfLocations {
-            let randomIndex = Int.random(in: 0..<(neiLocs.count - 1))
-            let randomLocation = neiLocs[randomIndex]
-            var alreadyUsed: Bool = false
-            locations.forEach { loc in
-                if loc == randomLocation {
-                    alreadyUsed = true
-                }
-            }
-            if !alreadyUsed {
-                locations.append(randomLocation)
-            }
+        
+        for index in 0..<numberOfLocations {
+            locations.append(neiLocs[index])
         }
         
-        game = Game(type: gameType, locations: locations)
+        game = Game(type: gameType, locations: locations.shuffled())
 
         switch gameType {
         case .timed:
@@ -68,12 +59,15 @@ class GameViewModel: ObservableObject {
     }
     
     private func setupTimer() {
-//        secondsRemaining = 10
-//        secondsRemaining = game.locations.count * 400
-//        let loc = locationManager.updatedLocation
-        var seconds = 200
+        var seconds = 300
+        if let loc = locationManager.updatedLocation {
+            let nextCoor = game.locations[0]
+            let distanceInMeters = loc.distance(from: nextCoor)
+            seconds = Int(distanceInMeters)
+        }
         
-        for index in 0..<(numberOfLocations-1) {
+        
+        for index in 0..<(numberOfLocations-2) {
             let currentCoor = game.locations[index]
             let nextCoor = game.locations[index+1]
 
@@ -84,9 +78,11 @@ class GameViewModel: ObservableObject {
     }
     
     func proceedToNextLevel() {
-        currentLevel += 1
-        showPuzzleButtonPressed = false
-        shouldShowFinishAlert = currentLevel == game.locations.count
+        if currentLevel < numberOfLocations {
+            currentLevel += 1
+        }
+//        showPuzzleButtonPressed = false
+        shouldShowFinishAlert = currentLevel == numberOfLocations
     }
 }
 

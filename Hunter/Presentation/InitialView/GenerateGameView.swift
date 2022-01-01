@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct GenerateGameView: View {
+    
+    let locationManager = LocationManager()
         
     @State private var showNeighbourhoods = false
     @State private var selectedNeighbourhood = Neighbourhood.friedrichshainTest
@@ -81,8 +83,10 @@ struct GenerateGameView: View {
                 .background(Color(red: 0.18, green: 0.70, blue: 0.46))
                 .cornerRadius(25)
                 .fullScreenCover(isPresented: $isGamePresented, content: {
-                    GameView(viewModel: GameViewModel(selectedNeighbourhood, selectedTypeOfGame, selectedNumberOfLocations))
+                    GameView(viewModel: GameViewModel(selectedNeighbourhood, selectedTypeOfGame, selectedNumberOfLocations, locationManager: locationManager))
                 })
+                .environmentObject(locationManager)
+                
             
             if showNeighbourhoods == true {
                 Picker("", selection: $selectedNeighbourhood) {
@@ -109,6 +113,7 @@ struct GenerateGameView: View {
             }
         }
     }
+    
 }
 
 #if DEBUG

@@ -17,7 +17,7 @@ struct GameView: View {
     
     @ObservedObject var viewModel: GameViewModel
     
-    @StateObject var locationManager = LocationManager()
+    @EnvironmentObject var locationManager: LocationManager
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -25,7 +25,7 @@ struct GameView: View {
         
         ZStack {
             
-            if viewModel.showPuzzleButtonPressed || (locationManager.distance(to: viewModel.nextMarkerLocation) < 15.0) {
+            if (locationManager.distance(to: viewModel.nextMarkerLocation) < 15.0) {
                 ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: viewModel)).edgesIgnoringSafeArea(.all)
             } else {
                 WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
@@ -33,7 +33,7 @@ struct GameView: View {
 
             VStack {
                 Spacer()
-                Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.levelsAmount).")
+                Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.numberOfLocations).")
                     .multilineTextAlignment(.center)
                 if viewModel.gameType == .timed {
                     Text("\(viewModel.secondsRemaining / 60) min \(viewModel.secondsRemaining % 60) sec remaining")
@@ -86,7 +86,7 @@ struct GameView: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        GameView(viewModel: GameViewModel(.friedrichshainTest, .click, 1))
+        GameView(viewModel: GameViewModel(.friedrichshainTest, .click, 1, locationManager: LocationManager()))
     }
 }
 #endif
