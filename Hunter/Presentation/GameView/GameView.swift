@@ -25,7 +25,6 @@ struct GameView: View {
         
         ZStack {
             if (viewModel.shouldShowPuzzleView) {
-//            if (locationManager.distance(to: viewModel.nextMarker?.location) < 15.0) || viewModel.showPuzzleButtonPressed {
                 viewModel.makePuzzleView().edgesIgnoringSafeArea(.all)
             } else {
                 WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
