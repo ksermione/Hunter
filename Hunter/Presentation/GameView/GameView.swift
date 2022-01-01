@@ -24,44 +24,52 @@ struct GameView: View {
     var body: some View {
         
         ZStack {
-            
-            if (locationManager.distance(to: viewModel.nextMarkerLocation) < 15.0) || viewModel.showPuzzleButtonPressed {
-                ClickPuzzleView(viewModel: ClickPuzzleViewModel(puzzle: ClickPuzzle(), delegate: viewModel)).edgesIgnoringSafeArea(.all)
+            if (viewModel.shouldShowPuzzleView) {
+//            if (locationManager.distance(to: viewModel.nextMarker?.location) < 15.0) || viewModel.showPuzzleButtonPressed {
+                viewModel.makePuzzleView().edgesIgnoringSafeArea(.all)
             } else {
                 WorldView(viewModel: viewModel).edgesIgnoringSafeArea(.all)
             }
 
-            VStack {
+            VStack(spacing: 10) {
+                
+                HStack {
+                    if viewModel.gameType == .timed {
+                        Text("\(viewModel.secondsRemaining / 60) min \(viewModel.secondsRemaining % 60) sec remaining")
+                                    .onReceive(timer) { _ in
+                                        if viewModel.secondsRemaining > 0 {
+                                            viewModel.secondsRemaining -= 1
+                                        } else {
+                                            viewModel.shouldShowTimeFailedAlert = true
+                                        }
+                                    }
+                    }
+                    Spacer()
+                    Button("x") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    .padding(.vertical , 8)
+                    .padding(.horizontal , 15)
+                    .foregroundColor(Color.gray)
+                    .background(Color.white)
+                    .cornerRadius(18)
+                }
+                .padding()
+                
                 Spacer()
                 
-                            Button(action: {
-                                viewModel.showPuzzleButtonPressed.toggle()
-                                if !viewModel.showPuzzleButtonPressed {
-                                    viewModel.proceedToNextLevel()
-                                }
-                            }) {
-                                Text( viewModel.showPuzzleButtonPressed ? "Box Collected" : "I'm at the location!")
-                            }
+                Button(action: {
+                    viewModel.showPuzzleButtonPressed.toggle()
+                    if !viewModel.showPuzzleButtonPressed {
+                        viewModel.proceedToNextLevel()
+                    }
+                }) {
+                    Text( viewModel.showPuzzleButtonPressed ? "Box Collected" : "I'm at the location!")
+                }
                 
-                Text("Location \(viewModel.currentLevel + 1) out of \(viewModel.numberOfLocations).")
+                Text("\(viewModel.puzzleText)")
                     .multilineTextAlignment(.center)
-                if viewModel.gameType == .timed {
-                    Text("\(viewModel.secondsRemaining / 60) min \(viewModel.secondsRemaining % 60) sec remaining")
-                                .onReceive(timer) { _ in
-                                    if viewModel.secondsRemaining > 0 {
-                                        viewModel.secondsRemaining -= 1
-                                    } else {
-                                        viewModel.shouldShowTimeFailedAlert = true
-                                    }
-                                }
-                }
-                
-                Button {
-                    presentationMode.wrappedValue.dismiss()
-                } label: {
-                    Text("Cancel Game")
-                        
-                }
+                    .padding()
             }
             .alert(isPresented: $viewModel.shouldShowTimeFailedAlert) {
                 Alert(

@@ -8,6 +8,21 @@
 import Foundation
 import CoreLocation
 
-//struct Marker {
-//    let location: CLLocation
-//}
+protocol MarkerDelegate {
+    func puzzleDidFinish()
+    func updatePuzzleText(_ text: String)
+}
+
+protocol Marker {
+    var location: CLLocation { get }
+}
+
+struct ClickMarker: Marker {
+    let location: CLLocation
+    let boxesNumber: Int
+}
+
+struct CardMarker: Marker {
+    let location: CLLocation
+    
+}

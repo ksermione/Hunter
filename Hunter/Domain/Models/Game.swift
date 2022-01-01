@@ -10,7 +10,7 @@ import CoreLocation
 
 struct Game {
     let type: GameType
-    let locations: [CLLocation]
+    let markers: [Marker]
 }
 
 extension Game {

@@ -29,10 +29,8 @@ public struct ClickPuzzleView: UIViewRepresentable {
                 action: #selector(Coordinator.handleTap)
             )
         )
-
-        // Load the "Box" scene from the "Experience" Reality File
-        let box = try! Experience.loadBox() // type: Entity
-        arView.scene.anchors.append(box)
+        drawBoxes(arView: arView)
+        viewModel.updateText()
         return arView
     }
     
@@ -44,28 +42,60 @@ public struct ClickPuzzleView: UIViewRepresentable {
     
     public class Coordinator: NSObject, ARSessionDelegate {
         weak var arView: ARView?
-        let delegate: CoordinatorDelegate
+        let delegate: ClickPuzzleCoordinatorDelegate
         
-        init(delegate: CoordinatorDelegate) {
+        init(delegate: ClickPuzzleCoordinatorDelegate) {
             self.delegate = delegate
         }
         
-        @objc func handleTap() {
-            delegate.handleTap()
+        @objc func handleTap(_ sender: UITapGestureRecognizer) {
+            let tapLocation = sender.location(in: arView)
+            if let card = arView?.entity(at: tapLocation) {
+                card.removeFromParent()
+                delegate.boxCollected()
+            }
         }
     }
     
     public func updateUIView(_ uiView: ARView, context: Context) {
-        print()
+        print("updating view, found \(uiView.scene.anchors.count) anchors")
+        
+        if uiView.scene.anchors.count == 0 {
+            drawBoxes(arView: uiView)
+        }
+    }
+    
+    private func drawBoxes(arView: ARView) {
+        // Add boxes
+        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [3, 3])
+        arView.scene.addAnchor(anchor)
+        
+        var cards: [Entity] = []
+        for _ in 1...viewModel.boxesNumber {
+            let box = MeshResource.generateBox(width: 0.3, height: 0.3, depth: 0.3)
+            let metalMaterial = SimpleMaterial(color: .red, isMetallic: true)
+            let model = ModelEntity(mesh: box, materials: [metalMaterial])
+            
+            model.generateCollisionShapes(recursive: true)
+            
+            cards.append(model)
+        }
+        
+        let shuffledLocs = viewModel.locations.shuffled()
+        
+        for (index,card) in cards.enumerated() {
+            card.position = shuffledLocs[index]
+            anchor.addChild(card)
+        }
     }
 }
 
-extension ClickPuzzleView: CoordinatorDelegate {
-    func handleTap() {
+extension ClickPuzzleView: ClickPuzzleCoordinatorDelegate {
+    func boxCollected() {
         viewModel.puzzleDidTap()
     }
 }
 
-protocol CoordinatorDelegate {
-    func handleTap()
+protocol ClickPuzzleCoordinatorDelegate {
+    func boxCollected()
 }

@@ -27,7 +27,7 @@ struct WorldView: UIViewRepresentable {
 
     func updateUIView(_ uiView: SceneLocationView, context: Context) {
         
-        if let location = viewModel.nextMarkerLocation {
+        if let marker = viewModel.nextMarker {
             uiView.removeAllNodes()
             let squareView = UIView(frame: CGRect(x: 0, y: 0, width: 140, height: 80))
             
@@ -39,7 +39,7 @@ struct WorldView: UIViewRepresentable {
             squareView.addSubview(levelLabel)
             
             let distanceLabel = UILabel(frame: CGRect(x: 40, y: 30, width: 100, height: 40))
-            distanceLabel.text = "\(locationManager.visualDistance(to: viewModel.nextMarkerLocation).0) \(locationManager.visualDistance(to: viewModel.nextMarkerLocation).1)"
+            distanceLabel.text = "\(locationManager.visualDistance(to: marker.location).0) \(locationManager.visualDistance(to: marker.location).1)"
             distanceLabel.textColor = .black
             distanceLabel.numberOfLines = 0
             distanceLabel.font = UIFont.systemFont(ofSize: 14)
@@ -49,7 +49,7 @@ struct WorldView: UIViewRepresentable {
             squareView.alpha = 0.7
             squareView.layer.cornerRadius = 15.0
 
-            let annotationNode = LocationAnnotationNode(location: location, view: squareView)
+            let annotationNode = LocationAnnotationNode(location: marker.location, view: squareView)
     //        annotationNode.scaleRelativeToDistance = true
             uiView.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
         }

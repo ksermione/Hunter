@@ -42,7 +42,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("location updated! \(locations)")
         updatedLocation = locations.first
     }
 }

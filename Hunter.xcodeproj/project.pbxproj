@@ -16,7 +16,6 @@
 		D733555227763499000FD6AD /* ClickPuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555127763499000FD6AD /* ClickPuzzleView.swift */; };
 		D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335553277A4F7B000FD6AD /* WorldView.swift */; };
 		D7335558277A5005000FD6AD /* ClickPuzzleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */; };
-		D733555C277A5530000FD6AD /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555B277A5530000FD6AD /* Puzzle.swift */; };
 		D7AA781827284831009E00DB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781727284831009E00DB /* LocationManager.swift */; };
 		D7AA781C272879BB009E00DB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781B272879BB009E00DB /* Game.swift */; };
 		D7AA781E27287D7C009E00DB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AA781D27287D7C009E00DB /* GameViewModel.swift */; };
@@ -41,7 +40,6 @@
 		D733555127763499000FD6AD /* ClickPuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPuzzleView.swift; sourceTree = "<group>"; };
 		D7335553277A4F7B000FD6AD /* WorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldView.swift; sourceTree = "<group>"; };
 		D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPuzzleViewModel.swift; sourceTree = "<group>"; };
-		D733555B277A5530000FD6AD /* Puzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle.swift; sourceTree = "<group>"; };
 		D7AA781727284831009E00DB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		D7AA781B272879BB009E00DB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D7AA781D27287D7C009E00DB /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 			children = (
 				D7AA781B272879BB009E00DB /* Game.swift */,
 				D70AE227277BA6C800881295 /* Marker.swift */,
-				D733555B277A5530000FD6AD /* Puzzle.swift */,
 				D70AE224277BA66900881295 /* Neighbourhood.swift */,
 			);
 			path = Models;
@@ -334,7 +331,6 @@
 				D7335558277A5005000FD6AD /* ClickPuzzleViewModel.swift in Sources */,
 				D70AE21E277B9E1F00881295 /* Double+.swift in Sources */,
 				D733555227763499000FD6AD /* ClickPuzzleView.swift in Sources */,
-				D733555C277A5530000FD6AD /* Puzzle.swift in Sources */,
 				D7F7CAB22721FA6E00539F01 /* AppDelegate.swift in Sources */,
 				D7F7CAB62721FA6E00539F01 /* Experience.rcproject in Sources */,
 				D70AE221277BA16200881295 /* InitialView.swift in Sources */,
