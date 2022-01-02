@@ -14,15 +14,12 @@ struct Game {
 }
 
 extension Game {
-    
     static func locations(for gameType: GameType, neighbourhood: Neighbourhood) -> [CLLocation] {
         switch gameType {
         case .click:
             return neighbourhood.locationsFar
-        case .timed:
+        case .timed, .matching:
             return neighbourhood.locationsNear
-        default:
-            return neighbourhood.locationsFar
         }
     }
 }
@@ -30,6 +27,11 @@ extension Game {
 enum GameType: String {
     case click = "Click & Collect"
     case timed = "Timed Game"
-    case trivia = "Trivia"
-    case cards = "Cards"
+    case matching = "Matching Game"
+}
+
+enum GameLength: String {
+    case short = "Short"
+    case medium = "Medium"
+    case long = "Long"
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 protocol MarkerDelegate {
     func puzzleDidFinish()
@@ -22,7 +23,8 @@ struct ClickMarker: Marker {
     let boxesNumber: Int
 }
 
-struct CardMarker: Marker {
+struct MatchingMarker: Marker {
     let location: CLLocation
-    
+    let object: String
+    let color: UIColor
 }

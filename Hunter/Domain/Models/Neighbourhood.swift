@@ -32,11 +32,13 @@ enum Neighbourhood: String {
             return [
                 // local ones for testing near Kadiner
 //                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511687, longitude: 13.447388), altitude: CLLocationDistance(39)), // park
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514834, longitude: 13.450078), altitude: CLLocationDistance(39)), // front of house
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514834, longitude: 13.450078), altitude: CLLocationDistance(39)), // front of house
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.512846, longitude: 13.450354), altitude: CLLocationDistance(39)), // corner
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.513399, longitude: 13.447585), altitude: CLLocationDistance(39)), //jager lustig
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514834, longitude: 13.450078), altitude: CLLocationDistance(39)), //schule gasse
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.515388, longitude: 13.451071), altitude: CLLocationDistance(39)), //front of church
+                
+//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514071, longitude: 13.450701), altitude: CLLocationDistance(39)), //home
             ]
         case .pBerg:
             return []
@@ -60,12 +62,15 @@ enum Neighbourhood: String {
         case .friedrichshainTest:
             return [
                 // local ones for testing near Kadiner
-//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511687, longitude: 13.447388), altitude: CLLocationDistance(39)), // park
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514834, longitude: 13.450078), altitude: CLLocationDistance(39)), // front of house
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.512846, longitude: 13.450354), altitude: CLLocationDistance(39)), // corner
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.513399, longitude: 13.447585), altitude: CLLocationDistance(39)), //jager lustig
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.514834, longitude: 13.450078), altitude: CLLocationDistance(39)), //schule gasse
-                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.515388, longitude: 13.451071), altitude: CLLocationDistance(39)), //front of church
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.512846, longitude: 13.450354), altitude: CLLocationDistance(38)), // corner
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.513399, longitude: 13.447585), altitude: CLLocationDistance(38)), //jager lustig
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51502, longitude: 13.44958), altitude: CLLocationDistance(38)), //schule gasse
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.515388, longitude: 13.451071), altitude: CLLocationDistance(38)), //front of church
+                
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51526, longitude: 13.44607), altitude: CLLocationDistance(38)),
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51543, longitude: 13.45200), altitude: CLLocationDistance(44)),
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51357, longitude: 13.44612), altitude: CLLocationDistance(43)),
+                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511687, longitude: 13.447388), altitude: CLLocationDistance(39)), // park
             ]
         case .pBerg:
             return []

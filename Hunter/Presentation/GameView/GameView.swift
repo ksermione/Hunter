@@ -44,7 +44,7 @@ struct GameView: View {
                                     }
                     }
                     Spacer()
-                    Button("x") {
+                    Button("X") {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .padding(.vertical , 8)
@@ -63,9 +63,9 @@ struct GameView: View {
                         viewModel.proceedToNextLevel()
                     }
                 }) {
-                    Text( viewModel.showPuzzleButtonPressed ? "Box Collected" : "I'm at the location!")
+                    Text( viewModel.showPuzzleButtonPressed ? "Puzzle finished" : "I'm at the location!")
                 }
-                
+
                 Text("\(viewModel.puzzleText)")
                     .multilineTextAlignment(.center)
                     .padding()
@@ -103,7 +103,7 @@ struct GameView: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        GameView(viewModel: GameViewModel(.friedrichshainTest, .click, 1, locationManager: LocationManager()))
+        GameView(viewModel: GameViewModel(.friedrichshainTest, .click, .short, locationManager: LocationManager()))
     }
 }
 #endif

@@ -15,8 +15,8 @@ struct GenerateGameView: View {
     @State private var showNeighbourhoods = false
     @State private var selectedNeighbourhood = Neighbourhood.friedrichshainTest
     
-    @State private var showNumberOfLocations = false
-    @State private var selectedNumberOfLocations = 1
+    @State private var showGameLength = false
+    @State private var selectedGameLength = GameLength.short
     
     @State private var showTypeOfGame = false
     @State private var selectedTypeOfGame = GameType.click
@@ -35,15 +35,15 @@ struct GenerateGameView: View {
                 }.onTapGesture {
                     showNeighbourhoods.toggle()
                     showTypeOfGame = false
-                    showNumberOfLocations = false
+                    showGameLength = false
                 }
                 
                 HStack {
-                    Text("Number of Locations")
+                    Text("Game Length")
                     Spacer()
-                    Text("\(selectedNumberOfLocations)")
+                    Text("\(selectedGameLength.rawValue)")
                 }.onTapGesture {
-                    showNumberOfLocations.toggle()
+                    showGameLength.toggle()
                     showNeighbourhoods = false
                     showTypeOfGame = false
                 }
@@ -55,7 +55,7 @@ struct GenerateGameView: View {
                 }.onTapGesture {
                     showTypeOfGame.toggle()
                     showNeighbourhoods = false
-                    showNumberOfLocations = false
+                    showGameLength = false
                 }
                 
             }
@@ -83,7 +83,7 @@ struct GenerateGameView: View {
                 .background(Color(red: 0.18, green: 0.70, blue: 0.46))
                 .cornerRadius(25)
                 .fullScreenCover(isPresented: $isGamePresented, content: {
-                    GameView(viewModel: GameViewModel(selectedNeighbourhood, selectedTypeOfGame, selectedNumberOfLocations, locationManager: locationManager))
+                    GameView(viewModel: GameViewModel(selectedNeighbourhood, selectedTypeOfGame, selectedGameLength, locationManager: locationManager))
                 })
                 .environmentObject(locationManager)
                 
@@ -92,23 +92,20 @@ struct GenerateGameView: View {
                 Picker("", selection: $selectedNeighbourhood) {
                     Text("\(Neighbourhood.friedrichshain.rawValue)").tag(Neighbourhood.friedrichshain)
                     Text("\(Neighbourhood.friedrichshainTest.rawValue)").tag(Neighbourhood.friedrichshainTest)
-//                    Text("Pberg").tag(Neighbourhood.pBerg)
-//                    Text("Mitte").tag(Neighbourhood.mitte)
                 }
             }
             if showTypeOfGame == true {
                 Picker("", selection: $selectedTypeOfGame) {
                     Text("Click & Collect").tag(GameType.click)
                     Text("Timed Game").tag(GameType.timed)
-//                    Text("Trivia").tag(GameType.trivia)
-//                    Text("Cards").tag(GameType.cards)
+                    Text("\(GameType.matching.rawValue)").tag(GameType.matching)
                 }
             }
-            if showNumberOfLocations == true {
-                Picker("", selection: $selectedNumberOfLocations) {
-                    ForEach(1 ..< Game.locations(for: selectedTypeOfGame, neighbourhood: selectedNeighbourhood).count + 1, id:\.self) { i in
-                        Text("\(i) locations").tag(i)
-                    }
+            if showGameLength == true {
+                Picker("", selection: $selectedGameLength) {
+                    Text("\(GameLength.short.rawValue)").tag(GameLength.short)
+                    Text("\(GameLength.medium.rawValue)").tag(GameLength.medium)
+                    Text("\(GameLength.long.rawValue)").tag(GameLength.long)
                 }
             }
         }

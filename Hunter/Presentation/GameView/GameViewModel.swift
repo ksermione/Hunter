@@ -10,29 +10,30 @@ import CoreLocation
 import SwiftUI
 
 class GameViewModel: ObservableObject {
-    @Published private var game: Game = Game(type: .click, markers: [])
-    @Published var currentLevel = 0
+    @Published var game: Game = Game(type: .click, markers: [])
+    
     @Published var shouldShowFinishAlert = false
     @Published var showPuzzleButtonPressed = false
     @Published var puzzleText: String = ""
+    
+    // Click Game
+    @Published var currentLevel = 0
     
     // Timed Game
     var timer: Timer?
     @Published var secondsRemaining: Int = 0
     @Published var shouldShowTimeFailedAlert = false
     
-    let locationManager: LocationManager //= LocationManager()
+    let locationManager: LocationManager
     private let neighbourhood: Neighbourhood
     let gameType: GameType
-    @Published var numberOfLocations: Int
+    let gameLength: GameLength
+    @Published var numberOfLocations: Int = 0
     
-    init(_ neighbourhood: Neighbourhood, _ gameType: GameType, _ numberOfLocations: Int, locationManager: LocationManager) {
+    init(_ neighbourhood: Neighbourhood, _ gameType: GameType, _ gameLength: GameLength, locationManager: LocationManager) {
         self.neighbourhood = neighbourhood
         self.gameType = gameType
-        
-        let maxLocCount = Game.locations(for: gameType, neighbourhood: neighbourhood).count
-        self.numberOfLocations = numberOfLocations <= maxLocCount ? numberOfLocations : maxLocCount
-        
+        self.gameLength = gameLength
         self.locationManager = locationManager
     }
     
@@ -52,26 +53,32 @@ class GameViewModel: ObservableObject {
         let neiLocs = Game.locations(for: gameType, neighbourhood: neighbourhood)
         var markers: [Marker] = []
         
+        switch gameLength {
+        case .short:
+            numberOfLocations = neiLocs.count >= 3 ?  neiLocs.count / 3 : neiLocs.count
+        case .medium:
+            numberOfLocations = neiLocs.count >= 2 ?  neiLocs.count * 2 / 3 : neiLocs.count
+        case .long:
+            numberOfLocations = neiLocs.count
+        }
+        
+        markers = markers.shuffled()
+        
         for index in 0..<numberOfLocations {
             switch gameType {
             case .click, .timed:
                 markers.append(ClickMarker(location: neiLocs[index],
                                            boxesNumber: index+1))
-            default:
-                break
+            case .matching:
+                markers.append(MatchingMarker(location: neiLocs[index], object: "", color: .red))
             }
         }
+
+        game = Game(type: gameType, markers: markers)
         
-        game = Game(type: gameType, markers: markers.shuffled())
-        
-        switch gameType {
-//        case .click:
-        case .timed:
+        if gameType == .timed {
             setupTimer()
-        default:
-            break
         }
-        
         puzzleText = defaultPuzzleText
     }
     
