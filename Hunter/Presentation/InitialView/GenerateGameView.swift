@@ -91,6 +91,7 @@ struct GenerateGameView: View {
             if showNeighbourhoods == true {
                 Picker("", selection: $selectedNeighbourhood) {
                     Text("\(Neighbourhood.friedrichshain.rawValue)").tag(Neighbourhood.friedrichshain)
+                    Text("\(Neighbourhood.friedrichshainFrTor.rawValue)").tag(Neighbourhood.friedrichshainFrTor)
                     Text("\(Neighbourhood.friedrichshainTest.rawValue)").tag(Neighbourhood.friedrichshainTest)
                 }
             }
@@ -99,6 +100,7 @@ struct GenerateGameView: View {
                     Text("Click & Collect").tag(GameType.click)
                     Text("Timed Game").tag(GameType.timed)
                     Text("\(GameType.matching.rawValue)").tag(GameType.matching)
+                    Text("\(GameType.memoryCard.rawValue)").tag(GameType.memoryCard)
                 }
             }
             if showGameLength == true {

@@ -38,7 +38,7 @@ class GameViewModel: ObservableObject {
     }
     
     var defaultPuzzleText: String {
-        return "Location \(currentLevel + 1) out of \(numberOfLocations)."
+        return "Find location \(currentLevel + 1) out of \(numberOfLocations).\n50m is close enough to see the puzzle;)"
     }
     
     var nextMarker: Marker? {
@@ -50,16 +50,15 @@ class GameViewModel: ObservableObject {
     }
     
     func generateGame() {
-        let neiLocs = Game.locations(for: gameType, neighbourhood: neighbourhood)
         var markers: [Marker] = []
         
         switch gameLength {
         case .short:
-            numberOfLocations = neiLocs.count >= 3 ?  neiLocs.count / 3 : neiLocs.count
+            numberOfLocations = neighbourhood.locations.count >= 3 ?  neighbourhood.locations.count / 3 : neighbourhood.locations.count
         case .medium:
-            numberOfLocations = neiLocs.count >= 2 ?  neiLocs.count * 2 / 3 : neiLocs.count
+            numberOfLocations = neighbourhood.locations.count >= 2 ?  neighbourhood.locations.count * 2 / 3 : neighbourhood.locations.count
         case .long:
-            numberOfLocations = neiLocs.count
+            numberOfLocations = neighbourhood.locations.count
         }
         
         markers = markers.shuffled()
@@ -67,10 +66,11 @@ class GameViewModel: ObservableObject {
         for index in 0..<numberOfLocations {
             switch gameType {
             case .click, .timed:
-                markers.append(ClickMarker(location: neiLocs[index],
-                                           boxesNumber: index+1))
+                markers.append(ClickMarker(location: neighbourhood.locations[index]))
             case .matching:
-                markers.append(MatchingMarker(location: neiLocs[index], object: "", color: .red))
+                markers.append(MatchingMarker(location: neighbourhood.locations[index], object: "", color: .red))
+            case .memoryCard:
+                markers.append(MemoryCardMarker(location: neighbourhood.locations[index], cardPairs: index+2))
             }
         }
 
@@ -87,7 +87,11 @@ class GameViewModel: ObservableObject {
         switch gameType {
         case .click, .timed:
             if let nextMarker = nextMarker as? ClickMarker {
-                ClickPuzzleView(viewModel: ClickPuzzleViewModel(boxesNumber: nextMarker.boxesNumber, delegate: self))
+                ClickPuzzleView(viewModel: ClickPuzzleViewModel(delegate: self))
+            }
+        case .memoryCard:
+            if let nextMarker = nextMarker as? MemoryCardMarker {
+                MemoryCardView(viewModel: MemoryCardViewModel(marker: nextMarker, delegate: self))
             }
         default:
             EmptyView()

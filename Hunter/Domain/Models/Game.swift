@@ -13,21 +13,11 @@ struct Game {
     let markers: [Marker]
 }
 
-extension Game {
-    static func locations(for gameType: GameType, neighbourhood: Neighbourhood) -> [CLLocation] {
-        switch gameType {
-        case .click:
-            return neighbourhood.locationsFar
-        case .timed, .matching:
-            return neighbourhood.locationsNear
-        }
-    }
-}
-
 enum GameType: String {
     case click = "Click & Collect"
     case timed = "Timed Game"
     case matching = "Matching Game"
+    case memoryCard = "Memory Card Game"
 }
 
 enum GameLength: String {

@@ -13,6 +13,15 @@
 		D70AE225277BA66900881295 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE224277BA66900881295 /* Neighbourhood.swift */; };
 		D70AE228277BA6C800881295 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE227277BA6C800881295 /* Marker.swift */; };
 		D70AE22A277BAB7600881295 /* GenerateGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE229277BAB7600881295 /* GenerateGameView.swift */; };
+		D70AE22F2782419B00881295 /* MemoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE22E2782419B00881295 /* MemoryCardView.swift */; };
+		D70AE231278241BF00881295 /* MemoryCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE230278241BF00881295 /* MemoryCardViewModel.swift */; };
+		D70AE2342782476800881295 /* tv.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE2332782476800881295 /* tv.usdz */; };
+		D70AE236278247A600881295 /* sneaker.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE235278247A600881295 /* sneaker.usdz */; };
+		D70AE238278247AE00881295 /* plane.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE237278247AE00881295 /* plane.usdz */; };
+		D70AE23A278247B600881295 /* kettle.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE239278247B600881295 /* kettle.usdz */; };
+		D70AE23C278247C000881295 /* drummer.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE23B278247C000881295 /* drummer.usdz */; };
+		D70AE23E278247C600881295 /* cup.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE23D278247C600881295 /* cup.usdz */; };
+		D70AE2402784E94000881295 /* RealityObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE23F2784E94000881295 /* RealityObject.swift */; };
 		D733555227763499000FD6AD /* ClickPuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733555127763499000FD6AD /* ClickPuzzleView.swift */; };
 		D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335553277A4F7B000FD6AD /* WorldView.swift */; };
 		D7335558277A5005000FD6AD /* ClickPuzzleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */; };
@@ -37,6 +46,15 @@
 		D70AE224277BA66900881295 /* Neighbourhood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neighbourhood.swift; sourceTree = "<group>"; };
 		D70AE227277BA6C800881295 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		D70AE229277BAB7600881295 /* GenerateGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateGameView.swift; sourceTree = "<group>"; };
+		D70AE22E2782419B00881295 /* MemoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCardView.swift; sourceTree = "<group>"; };
+		D70AE230278241BF00881295 /* MemoryCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCardViewModel.swift; sourceTree = "<group>"; };
+		D70AE2332782476800881295 /* tv.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv.usdz; sourceTree = "<group>"; };
+		D70AE235278247A600881295 /* sneaker.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = sneaker.usdz; sourceTree = "<group>"; };
+		D70AE237278247AE00881295 /* plane.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = plane.usdz; sourceTree = "<group>"; };
+		D70AE239278247B600881295 /* kettle.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = kettle.usdz; sourceTree = "<group>"; };
+		D70AE23B278247C000881295 /* drummer.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = drummer.usdz; sourceTree = "<group>"; };
+		D70AE23D278247C600881295 /* cup.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cup.usdz; sourceTree = "<group>"; };
+		D70AE23F2784E94000881295 /* RealityObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealityObject.swift; sourceTree = "<group>"; };
 		D733555127763499000FD6AD /* ClickPuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPuzzleView.swift; sourceTree = "<group>"; };
 		D7335553277A4F7B000FD6AD /* WorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldView.swift; sourceTree = "<group>"; };
 		D7335557277A5005000FD6AD /* ClickPuzzleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPuzzleViewModel.swift; sourceTree = "<group>"; };
@@ -94,9 +112,32 @@
 			children = (
 				D7AA781B272879BB009E00DB /* Game.swift */,
 				D70AE227277BA6C800881295 /* Marker.swift */,
+				D70AE23F2784E94000881295 /* RealityObject.swift */,
 				D70AE224277BA66900881295 /* Neighbourhood.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D70AE22D2782419000881295 /* MemoryCard */ = {
+			isa = PBXGroup;
+			children = (
+				D70AE22E2782419B00881295 /* MemoryCardView.swift */,
+				D70AE230278241BF00881295 /* MemoryCardViewModel.swift */,
+			);
+			path = MemoryCard;
+			sourceTree = "<group>";
+		};
+		D70AE2322782473B00881295 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D70AE239278247B600881295 /* kettle.usdz */,
+				D70AE2332782476800881295 /* tv.usdz */,
+				D70AE235278247A600881295 /* sneaker.usdz */,
+				D70AE23D278247C600881295 /* cup.usdz */,
+				D70AE23B278247C000881295 /* drummer.usdz */,
+				D70AE237278247AE00881295 /* plane.usdz */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D7335555277A4FAD000FD6AD /* GameView */ = {
@@ -120,6 +161,7 @@
 		D7335559277A500B000FD6AD /* PuzzleViews */ = {
 			isa = PBXGroup;
 			children = (
+				D70AE22D2782419000881295 /* MemoryCard */,
 				D733555F277A7643000FD6AD /* ClickPuzzle */,
 			);
 			path = PuzzleViews;
@@ -187,6 +229,7 @@
 				D7F7CAB12721FA6E00539F01 /* AppDelegate.swift */,
 				D7AA781A272879A9009E00DB /* Presentation */,
 				D7AA781927287994009E00DB /* Domain */,
+				D70AE2322782473B00881295 /* Resources */,
 				D7F7CAB52721FA6E00539F01 /* Experience.rcproject */,
 				D7F7CAB72721FA6F00539F01 /* Assets.xcassets */,
 				D7F7CAB92721FA6F00539F01 /* Preview Content */,
@@ -270,7 +313,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D70AE2342782476800881295 /* tv.usdz in Resources */,
+				D70AE23C278247C000881295 /* drummer.usdz in Resources */,
+				D70AE238278247AE00881295 /* plane.usdz in Resources */,
+				D70AE236278247A600881295 /* sneaker.usdz in Resources */,
+				D70AE23E278247C600881295 /* cup.usdz in Resources */,
 				D7F7CABB2721FA6F00539F01 /* Preview Assets.xcassets in Resources */,
+				D70AE23A278247B600881295 /* kettle.usdz in Resources */,
 				D7F7CAB82721FA6F00539F01 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +386,9 @@
 				D7AA781827284831009E00DB /* LocationManager.swift in Sources */,
 				D7AA781E27287D7C009E00DB /* GameViewModel.swift in Sources */,
 				D70AE223277BA42700881295 /* StorageManager.swift in Sources */,
+				D70AE2402784E94000881295 /* RealityObject.swift in Sources */,
+				D70AE231278241BF00881295 /* MemoryCardViewModel.swift in Sources */,
+				D70AE22F2782419B00881295 /* MemoryCardView.swift in Sources */,
 				D70AE225277BA66900881295 /* Neighbourhood.swift in Sources */,
 				D70AE228277BA6C800881295 /* Marker.swift in Sources */,
 			);

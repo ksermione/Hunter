@@ -9,6 +9,7 @@ import Foundation
 import ARKit
 import SwiftUI
 import RealityKit
+import Combine
 
 public struct ClickPuzzleView: UIViewRepresentable {
     
@@ -58,8 +59,6 @@ public struct ClickPuzzleView: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: ARView, context: Context) {
-        print("updating view, found \(uiView.scene.anchors.count) anchors")
-        
         if uiView.scene.anchors.count == 0 {
             drawBoxes(arView: uiView)
         }
@@ -67,26 +66,26 @@ public struct ClickPuzzleView: UIViewRepresentable {
     
     private func drawBoxes(arView: ARView) {
         // Add boxes
-        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [3, 3])
+        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [1, 1])
         arView.scene.addAnchor(anchor)
         
-        var cards: [Entity] = []
-        for _ in 1...viewModel.boxesNumber {
-            let box = MeshResource.generateBox(width: 0.3, height: 0.3, depth: 0.3)
-            let metalMaterial = SimpleMaterial(color: .red, isMetallic: true)
-            let model = ModelEntity(mesh: box, materials: [metalMaterial])
-            
-            model.generateCollisionShapes(recursive: true)
-            
-            cards.append(model)
-        }
+        // load models
+        var cancellable: AnyCancellable? = nil
+        cancellable = ModelEntity.loadModelAsync(named: RealityObject.plane.rawValue)
+            .collect()
+            .sink(receiveCompletion: {error in
+                print("oksi Error \(error)")
+                cancellable?.cancel()
+            }, receiveValue: { (entities) in
+                if let object: ModelEntity = entities.first?.clone(recursive: true) {
+                    object.setScale(RealityObject.plane.scaleForClickGame, relativeTo: anchor)
+                    object.generateCollisionShapes(recursive: true)
+                    object.position = [0, 0, 0]
+                    anchor.addChild(object)
+                }
+                cancellable?.cancel()
+            })
         
-        let shuffledLocs = viewModel.locations.shuffled()
-        
-        for (index,card) in cards.enumerated() {
-            card.position = shuffledLocs[index]
-            anchor.addChild(card)
-        }
     }
 }
 

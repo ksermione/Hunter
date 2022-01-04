@@ -20,7 +20,11 @@ protocol Marker {
 
 struct ClickMarker: Marker {
     let location: CLLocation
-    let boxesNumber: Int
+}
+
+struct MemoryCardMarker: Marker {
+    let location: CLLocation
+    let cardPairs: Int
 }
 
 struct MatchingMarker: Marker {
