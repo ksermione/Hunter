@@ -71,7 +71,7 @@ public struct ClickPuzzleView: UIViewRepresentable {
         
         // load models
         var cancellable: AnyCancellable? = nil
-        cancellable = ModelEntity.loadModelAsync(named: RealityObject.plane.rawValue)
+        cancellable = ModelEntity.loadModelAsync(named: RealityObject.plane.name)
             .collect()
             .sink(receiveCompletion: {error in
                 print("oksi Error \(error)")

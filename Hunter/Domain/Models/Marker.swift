@@ -24,7 +24,7 @@ struct ClickMarker: Marker {
 
 struct MemoryCardMarker: Marker {
     let location: CLLocation
-    let cardPairs: Int
+    let cardPairs: [RealityObject]
 }
 
 struct MatchingMarker: Marker {

@@ -36,7 +36,7 @@ struct WorldView: UIViewRepresentable {
         let squareView = UIView(frame: CGRect(x: 0, y: 0, width: 140, height: 80))
         
         let levelLabel = UILabel(frame: CGRect(x: 25, y: 13, width: 100, height: 30))
-        levelLabel.text = "Location \(viewModel.currentLevel+1)"
+        levelLabel.text = "Location \(viewModel.currentLevel)"
         levelLabel.textColor = .black
         levelLabel.numberOfLines = 0
         levelLabel.font = UIFont.boldSystemFont(ofSize: 18.0)

@@ -99,7 +99,7 @@ struct GenerateGameView: View {
                 Picker("", selection: $selectedTypeOfGame) {
                     Text("Click & Collect").tag(GameType.click)
                     Text("Timed Game").tag(GameType.timed)
-                    Text("\(GameType.matching.rawValue)").tag(GameType.matching)
+//                    Text("\(GameType.matching.rawValue)").tag(GameType.matching)
                     Text("\(GameType.memoryCard.rawValue)").tag(GameType.memoryCard)
                 }
             }

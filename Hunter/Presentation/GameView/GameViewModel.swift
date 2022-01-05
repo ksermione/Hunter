@@ -17,7 +17,7 @@ class GameViewModel: ObservableObject {
     @Published var puzzleText: String = ""
     
     // Click Game
-    @Published var currentLevel = 0
+    @Published var currentLevel = 1
     
     // Timed Game
     var timer: Timer?
@@ -38,11 +38,11 @@ class GameViewModel: ObservableObject {
     }
     
     var defaultPuzzleText: String {
-        return "Find location \(currentLevel + 1) out of \(numberOfLocations).\n50m is close enough to see the puzzle;)"
+        return "Find location \(currentLevel) out of \(numberOfLocations).\n50m is close enough to see the puzzle;)"
     }
     
     var nextMarker: Marker? {
-        return (game.markers.count > 0 && currentLevel < game.markers.count ) ? game.markers[currentLevel] : nil
+        return (game.markers.count > 0 && currentLevel <= game.markers.count ) ? game.markers[currentLevel-1] : nil
     }
     
     var shouldShowPuzzleView: Bool {
@@ -70,7 +70,12 @@ class GameViewModel: ObservableObject {
             case .matching:
                 markers.append(MatchingMarker(location: neighbourhood.locations[index], object: "", color: .red))
             case .memoryCard:
-                markers.append(MemoryCardMarker(location: neighbourhood.locations[index], cardPairs: index+2))
+                var pairs: [RealityObject] = []
+                let numOfPairs = index > 4 ? 6 : index + 2
+                for i in 0..<numOfPairs {
+                    pairs.append((.init(rawValue: i) ?? .plane))
+                }
+                markers.append(MemoryCardMarker(location: neighbourhood.locations[index], cardPairs: pairs))
             }
         }
 
@@ -86,7 +91,7 @@ class GameViewModel: ObservableObject {
     func makePuzzleView() -> some View {
         switch gameType {
         case .click, .timed:
-            if let nextMarker = nextMarker as? ClickMarker {
+            if let _ = nextMarker as? ClickMarker {
                 ClickPuzzleView(viewModel: ClickPuzzleViewModel(delegate: self))
             }
         case .memoryCard:
@@ -120,11 +125,11 @@ class GameViewModel: ObservableObject {
     }
     
     func proceedToNextLevel() {
-        if (currentLevel+1) < numberOfLocations {
+        if currentLevel <= numberOfLocations {
             currentLevel += 1
         }
         showPuzzleButtonPressed = false
-        shouldShowFinishAlert = (currentLevel + 1) == numberOfLocations
+        shouldShowFinishAlert = currentLevel > numberOfLocations
         puzzleText = defaultPuzzleText
     }
 }
