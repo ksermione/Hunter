@@ -51,31 +51,30 @@ class GameViewModel: ObservableObject {
     
     func generateGame() {
         var markers: [Marker] = []
+        let locations: [CLLocation] = neighbourhood.locations.shuffled()
         
         switch gameLength {
         case .short:
-            numberOfLocations = neighbourhood.locations.count >= 3 ?  neighbourhood.locations.count / 3 : neighbourhood.locations.count
+            numberOfLocations = locations.count >= 3 ?  locations.count / 3 : locations.count
         case .medium:
-            numberOfLocations = neighbourhood.locations.count >= 2 ?  neighbourhood.locations.count * 2 / 3 : neighbourhood.locations.count
+            numberOfLocations = locations.count >= 2 ?  locations.count * 2 / 3 : locations.count
         case .long:
-            numberOfLocations = neighbourhood.locations.count
+            numberOfLocations = locations.count
         }
-        
-        markers = markers.shuffled()
         
         for index in 0..<numberOfLocations {
             switch gameType {
             case .click, .timed:
-                markers.append(ClickMarker(location: neighbourhood.locations[index]))
+                markers.append(ClickMarker(location: locations[index]))
             case .matching:
-                markers.append(MatchingMarker(location: neighbourhood.locations[index], object: "", color: .red))
+                markers.append(MatchingMarker(location: locations[index], object: "", color: .red))
             case .memoryCard:
                 var pairs: [RealityObject] = []
                 let numOfPairs = index > 4 ? 6 : index + 2
                 for i in 0..<numOfPairs {
                     pairs.append((.init(rawValue: i) ?? .plane))
                 }
-                markers.append(MemoryCardMarker(location: neighbourhood.locations[index], cardPairs: pairs))
+                markers.append(MemoryCardMarker(location: locations[index], cardPairs: pairs))
             }
         }
 
