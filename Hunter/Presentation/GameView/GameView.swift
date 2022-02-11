@@ -40,7 +40,19 @@ struct GameView: View {
                                             viewModel.secondsRemaining -= 1
                                         } else {
                                             viewModel.shouldShowTimeFailedAlert = true
+                                            
                                         }
+                                    }
+                                    .alert(isPresented: $viewModel.shouldShowTimeFailedAlert) {
+                                        Alert(
+                                            title: Text("Oh no...."),
+                                            message: Text("Unfortunately you weren't fast enough :/"),
+                                            dismissButton: .default(
+                                                            Text("Quit"),
+                                                            action: {
+                                                                presentationMode.wrappedValue.dismiss()
+                                                            })
+                                            )
                                     }
                     }
                     Spacer()
@@ -57,44 +69,34 @@ struct GameView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    viewModel.showPuzzleButtonPressed.toggle()
-                    if !viewModel.showPuzzleButtonPressed {
-                        viewModel.proceedToNextLevel()
-                    }
-                }) {
-                    Text( viewModel.showPuzzleButtonPressed ? "Puzzle finished" : "I'm at the location!")
-                }
+//                Button(action: {
+//                    viewModel.showPuzzleButtonPressed.toggle()
+//                    if !viewModel.showPuzzleButtonPressed {
+//                        viewModel.proceedToNextLevel()
+//                    }
+//                }) {
+//                    Text( viewModel.showPuzzleButtonPressed ? "Puzzle finished" : "I'm at the location!")
+//                }
 
                 Text("\(viewModel.puzzleText)")
                     .multilineTextAlignment(.center)
                     .padding()
+                    .alert(isPresented: $viewModel.shouldShowFinishAlert) {
+                        Alert(
+                            title: Text("Nice job!"),
+                            message: Text("You've finished your game."),
+                            dismissButton: .default(
+                                            Text("Quit"),
+                                            action: {
+                                                presentationMode.wrappedValue.dismiss()
+                                            })
+                        )
+                    }
             }
-            .alert(isPresented: $viewModel.shouldShowTimeFailedAlert) {
-                Alert(
-                    title: Text("Oh no...."),
-                    message: Text("Unfortunately you weren't fast enough :/"),
-                    dismissButton: .default(
-                                    Text("Quit"),
-                                    action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                    })
-                    )
-            }
+            
         }
         .onAppear {
             self.viewModel.generateGame()
-        }
-        .alert(isPresented: $viewModel.shouldShowFinishAlert) {
-            Alert(
-                title: Text("Nice job!"),
-                message: Text("You've finished your game."),
-                dismissButton: .default(
-                                Text("Quit"),
-                                action: {
-                                    presentationMode.wrappedValue.dismiss()
-                                })
-            )
         }
     }
     
