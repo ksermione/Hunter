@@ -11,8 +11,8 @@
 		D70AE221277BA16200881295 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE220277BA16200881295 /* InitialView.swift */; };
 		D70AE223277BA42700881295 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE222277BA42700881295 /* StorageManager.swift */; };
 		D70AE225277BA66900881295 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE224277BA66900881295 /* Neighbourhood.swift */; };
-		D70AE228277BA6C800881295 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE227277BA6C800881295 /* Marker.swift */; };
-		D70AE22A277BAB7600881295 /* GenerateGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE229277BAB7600881295 /* GenerateGameView.swift */; };
+		D70AE228277BA6C800881295 /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE227277BA6C800881295 /* Puzzle.swift */; };
+		D70AE22A277BAB7600881295 /* GameGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE229277BAB7600881295 /* GameGenerationView.swift */; };
 		D70AE22F2782419B00881295 /* MemoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE22E2782419B00881295 /* MemoryCardView.swift */; };
 		D70AE231278241BF00881295 /* MemoryCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70AE230278241BF00881295 /* MemoryCardViewModel.swift */; };
 		D70AE2342782476800881295 /* tv.usdz in Resources */ = {isa = PBXBuildFile; fileRef = D70AE2332782476800881295 /* tv.usdz */; };
@@ -44,8 +44,8 @@
 		D70AE220277BA16200881295 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
 		D70AE222277BA42700881295 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		D70AE224277BA66900881295 /* Neighbourhood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neighbourhood.swift; sourceTree = "<group>"; };
-		D70AE227277BA6C800881295 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
-		D70AE229277BAB7600881295 /* GenerateGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateGameView.swift; sourceTree = "<group>"; };
+		D70AE227277BA6C800881295 /* Puzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puzzle.swift; sourceTree = "<group>"; };
+		D70AE229277BAB7600881295 /* GameGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGenerationView.swift; sourceTree = "<group>"; };
 		D70AE22E2782419B00881295 /* MemoryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCardView.swift; sourceTree = "<group>"; };
 		D70AE230278241BF00881295 /* MemoryCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCardViewModel.swift; sourceTree = "<group>"; };
 		D70AE2332782476800881295 /* tv.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = tv.usdz; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				D70AE220277BA16200881295 /* InitialView.swift */,
-				D70AE229277BAB7600881295 /* GenerateGameView.swift */,
+				D70AE229277BAB7600881295 /* GameGenerationView.swift */,
 			);
 			path = InitialView;
 			sourceTree = "<group>";
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				D7AA781B272879BB009E00DB /* Game.swift */,
-				D70AE227277BA6C800881295 /* Marker.swift */,
+				D70AE227277BA6C800881295 /* Puzzle.swift */,
 				D70AE23F2784E94000881295 /* RealityObject.swift */,
 				D70AE224277BA66900881295 /* Neighbourhood.swift */,
 			);
@@ -374,7 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F7CAB42721FA6E00539F01 /* GameView.swift in Sources */,
-				D70AE22A277BAB7600881295 /* GenerateGameView.swift in Sources */,
+				D70AE22A277BAB7600881295 /* GameGenerationView.swift in Sources */,
 				D7335554277A4F7B000FD6AD /* WorldView.swift in Sources */,
 				D7AA781C272879BB009E00DB /* Game.swift in Sources */,
 				D7335558277A5005000FD6AD /* ClickPuzzleViewModel.swift in Sources */,
@@ -390,7 +390,7 @@
 				D70AE231278241BF00881295 /* MemoryCardViewModel.swift in Sources */,
 				D70AE22F2782419B00881295 /* MemoryCardView.swift in Sources */,
 				D70AE225277BA66900881295 /* Neighbourhood.swift in Sources */,
-				D70AE228277BA6C800881295 /* Marker.swift in Sources */,
+				D70AE228277BA6C800881295 /* Puzzle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,13 +10,12 @@ import CoreLocation
 
 struct Game {
     let type: GameType
-    let markers: [Marker]
+    let puzzles: [Puzzle]
 }
 
 enum GameType: String {
     case click = "Click & Collect"
     case timed = "Timed Game"
-    case matching = "Matching Game"
     case memoryCard = "Memory Card Game"
 }
 

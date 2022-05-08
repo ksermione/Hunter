@@ -14,9 +14,6 @@ enum StorageVariable: String {
     case triviaGameUnlocked = "kTriviaGameUnlocked"
     case cardGameUnlocked = "kCardGameUnlocked"
     
-//    // Saving progress of game
-//    case currentGameLocation = "kCurrentGameLocation"
-//    case currentGameNextMarker = "kCurrentGameNextMarker"
 }
 
 

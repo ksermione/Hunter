@@ -12,9 +12,9 @@ import RealityKit
 class MemoryCardViewModel: ObservableObject {
     
     private var activeCardName: String?
-    let marker: MemoryCardMarker
+    let puzzle: MemoryCardPuzzle
     private var pairsMatched = 0
-    private let delegate: MarkerDelegate
+    private let delegate: PuzzleDelegate
     
     let positions: [SIMD3<Float>] = [
         [0, 0, 0],
@@ -35,8 +35,8 @@ class MemoryCardViewModel: ObservableObject {
         [-0.3, 0, 0.6],
     ]
     
-    init(marker: MemoryCardMarker, delegate: MarkerDelegate) {
-        self.marker = marker
+    init(puzzle: MemoryCardPuzzle, delegate: PuzzleDelegate) {
+        self.puzzle = puzzle
         self.delegate = delegate
     }
     
@@ -47,12 +47,12 @@ class MemoryCardViewModel: ObservableObject {
     func pairMatched() {
         pairsMatched += 1
         updateText()
-        if pairsMatched == marker.cardPairs.count {
+        if pairsMatched == puzzle.cardPairs.count {
             delegate.puzzleDidFinish()
         }
     }
     
     func updateText() {
-        delegate.updatePuzzleText("\(pairsMatched)/\(marker.cardPairs.count) pairs matched")
+        delegate.updatePuzzleText("\(pairsMatched)/\(puzzle.cardPairs.count) pairs matched")
     }
 }

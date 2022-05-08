@@ -27,7 +27,6 @@ enum Neighbourhood: String {
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51590, longitude: 13.44339), altitude: CLLocationDistance(42)), // weberwiese
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51880, longitude: 13.44480), altitude: CLLocationDistance(41)), // auerdreieck
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.52131, longitude: 13.45055), altitude: CLLocationDistance(53)), // petersburger platz
-//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51944, longitude: 13.46035), altitude: CLLocationDistance(50)), // Fockenbeckplatz
             ]
         case .friedrichshainTest:
             return [
@@ -39,8 +38,6 @@ enum Neighbourhood: String {
                 
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51526, longitude: 13.44607), altitude: CLLocationDistance(38)),
                 CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51543, longitude: 13.45200), altitude: CLLocationDistance(44)),
-//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.51357, longitude: 13.44612), altitude: CLLocationDistance(43)),
-//                CLLocation(coordinate: CLLocationCoordinate2D(latitude: 52.511687, longitude: 13.447388), altitude: CLLocationDistance(39)), // park
             ]
         case .friedrichshainFrTor:
             return [

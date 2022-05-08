@@ -10,7 +10,7 @@ import CoreLocation
 import SwiftUI
 
 class GameViewModel: ObservableObject {
-    @Published var game: Game = Game(type: .click, markers: [])
+    @Published var game: Game = Game(type: .click, puzzles: [])
     
     @Published var shouldShowFinishAlert = false
     @Published var showPuzzleButtonPressed = false
@@ -41,16 +41,16 @@ class GameViewModel: ObservableObject {
         return "Find location \(currentLevel) out of \(numberOfLocations).\n50m is close enough to see the puzzle;)"
     }
     
-    var nextMarker: Marker? {
-        return (game.markers.count > 0 && currentLevel <= game.markers.count ) ? game.markers[currentLevel-1] : nil
+    var nextPuzzle: Puzzle? {
+        return (game.puzzles.count > 0 && currentLevel <= game.puzzles.count ) ? game.puzzles[currentLevel-1] : nil
     }
     
     var shouldShowPuzzleView: Bool {
-        return (locationManager.distance(to: nextMarker?.location) < 50.0) || showPuzzleButtonPressed
+        return (locationManager.distance(to: nextPuzzle?.location) < 50.0) || showPuzzleButtonPressed
     }
     
     func generateGame() {
-        var markers: [Marker] = []
+        var puzzles: [Puzzle] = []
         let locations: [CLLocation] = neighbourhood.locations.shuffled()
         
         switch gameLength {
@@ -65,20 +65,18 @@ class GameViewModel: ObservableObject {
         for index in 0..<numberOfLocations {
             switch gameType {
             case .click, .timed:
-                markers.append(ClickMarker(location: locations[index]))
-            case .matching:
-                markers.append(MatchingMarker(location: locations[index], object: "", color: .red))
+                puzzles.append(ClickPuzzle(location: locations[index]))
             case .memoryCard:
                 var pairs: [RealityObject] = []
                 let numOfPairs = index > 4 ? 6 : index + 2
                 for i in 0..<numOfPairs {
                     pairs.append((.init(rawValue: i) ?? .plane))
                 }
-                markers.append(MemoryCardMarker(location: locations[index], cardPairs: pairs))
+                puzzles.append(MemoryCardPuzzle(location: locations[index], cardPairs: pairs))
             }
         }
 
-        game = Game(type: gameType, markers: markers)
+        game = Game(type: gameType, puzzles: puzzles)
         
         if gameType == .timed {
             setupTimer()
@@ -90,15 +88,13 @@ class GameViewModel: ObservableObject {
     func makePuzzleView() -> some View {
         switch gameType {
         case .click, .timed:
-            if let _ = nextMarker as? ClickMarker {
+            if let _ = nextPuzzle as? ClickPuzzle {
                 ClickPuzzleView(viewModel: ClickPuzzleViewModel(delegate: self))
             }
         case .memoryCard:
-            if let nextMarker = nextMarker as? MemoryCardMarker {
-                MemoryCardView(viewModel: MemoryCardViewModel(marker: nextMarker, delegate: self))
+            if let nextPuzzle = nextPuzzle as? MemoryCardPuzzle {
+                MemoryCardView(viewModel: MemoryCardViewModel(puzzle: nextPuzzle, delegate: self))
             }
-        default:
-            EmptyView()
         }
         EmptyView()
     }
@@ -106,15 +102,15 @@ class GameViewModel: ObservableObject {
     private func setupTimer() {
         var seconds = 300
         if let loc = locationManager.updatedLocation {
-            let nextCoor = game.markers[0].location
+            let nextCoor = game.puzzles[0].location
             let distanceInMeters = loc.distance(from: nextCoor)
             seconds = Int(distanceInMeters)
         }
         
         if numberOfLocations > 1 {
             for index in 0..<(numberOfLocations-2) {
-                let currentCoor = game.markers[index].location
-                let nextCoor = game.markers[index+1].location
+                let currentCoor = game.puzzles[index].location
+                let nextCoor = game.puzzles[index+1].location
 
                 let distanceInMeters = currentCoor.distance(from: nextCoor)
                 seconds += Int(distanceInMeters)
@@ -133,7 +129,7 @@ class GameViewModel: ObservableObject {
     }
 }
 
-extension GameViewModel: MarkerDelegate {
+extension GameViewModel: PuzzleDelegate {
     func puzzleDidFinish() {
         proceedToNextLevel()
     }

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct GenerateGameView: View {
+struct GameGenerationView: View {
     
     let locationManager = LocationManager()
         
@@ -62,9 +62,9 @@ struct GenerateGameView: View {
             
             switch selectedTypeOfGame {
             case .click:
-                Text("In a Click & Collect game you are showed the marker for the next location, once you reach it, you need to collect a box, and you will see your next marker. No time limit, no pressure.")
+                Text("In a Click & Collect game you are showed the wayfinder to the next location, once you reach it, you need to collect an object, and you will see your next wayfinder. No time limit, no pressure.")
             case .timed:
-                Text("In a Timed game, there is a limited amount of time to collect all the boxes. If the time runs out, the game is lost and reset to the first marker.")
+                Text("In a Timed game, there is a limited amount of time to collect all the objects. If the time runs out, the game is lost.")
             default:
                 Text("")
             }
@@ -99,7 +99,6 @@ struct GenerateGameView: View {
                 Picker("", selection: $selectedTypeOfGame) {
                     Text("Click & Collect").tag(GameType.click)
                     Text("Timed Game").tag(GameType.timed)
-//                    Text("\(GameType.matching.rawValue)").tag(GameType.matching)
                     Text("\(GameType.memoryCard.rawValue)").tag(GameType.memoryCard)
                 }
             }
@@ -118,7 +117,7 @@ struct GenerateGameView: View {
 #if DEBUG
 struct GenerateGameView_Previews : PreviewProvider {
     static var previews: some View {
-        GenerateGameView()
+        GameGenerationView()
     }
 }
 #endif

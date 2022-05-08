@@ -30,7 +30,7 @@ public struct ClickPuzzleView: UIViewRepresentable {
                 action: #selector(Coordinator.handleTap)
             )
         )
-        drawBoxes(arView: arView)
+        drawPuzzle(arView: arView)
         viewModel.updateText()
         return arView
     }
@@ -60,32 +60,22 @@ public struct ClickPuzzleView: UIViewRepresentable {
     
     public func updateUIView(_ uiView: ARView, context: Context) {
         if uiView.scene.anchors.count == 0 {
-            drawBoxes(arView: uiView)
+            drawPuzzle(arView: uiView)
         }
     }
     
-    private func drawBoxes(arView: ARView) {
-        // Add boxes
+    private func drawPuzzle(arView: ARView) {
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [1, 1])
         arView.scene.addAnchor(anchor)
         
         // load models
-        var cancellable: AnyCancellable? = nil
-        cancellable = ModelEntity.loadModelAsync(named: RealityObject.plane.name)
-            .collect()
-            .sink(receiveCompletion: {error in
-                print("oksi Error \(error)")
-                cancellable?.cancel()
-            }, receiveValue: { (entities) in
-                if let object: ModelEntity = entities.first?.clone(recursive: true) {
-                    object.setScale(RealityObject.plane.scaleForClickGame, relativeTo: anchor)
-                    object.generateCollisionShapes(recursive: true)
-                    object.position = [0, 0, 0]
-                    anchor.addChild(object)
-                }
-                cancellable?.cancel()
-            })
-        
+        if let entity = try? Entity.load(named: RealityObject.plane.name) {
+            entity.setScale(RealityObject.plane.scaleForClickGame, relativeTo: anchor)
+            entity.generateCollisionShapes(recursive: true)
+            entity.position = [0, 0, 0]
+            anchor.addChild(entity)
+            
+        }
     }
 }
 

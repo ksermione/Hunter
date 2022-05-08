@@ -69,6 +69,7 @@ struct GameView: View {
                 
                 Spacer()
                 
+                // DEBUG BUTTON
 //                Button(action: {
 //                    viewModel.showPuzzleButtonPressed.toggle()
 //                    if !viewModel.showPuzzleButtonPressed {

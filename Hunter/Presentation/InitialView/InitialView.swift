@@ -18,10 +18,10 @@ struct InitialView: View {
                         .navigationTitle("Welcome!")
                         .font(.title2)
                         .padding()
-                    Text("Here's how it works:\nSelect the amount of locations you have time for in the next screen, then a game will be generated for you! Now all you need to do is find the direction you need to travel to and get the hell out! Once you are closer than 5 meters to the location, the view on your phone will change. There you need to point your camera at a flat surface to see the 3D model. Once its there, all you need to do is click it to collect! Once all the boxes from all the locations are collected, your game is done! Thanks for playing ;)")
+                    Text("Here's how it works:\nSelect your preferences in the next screen, then a game will be generated for you! Now all you need to do is find the direction you need to travel to and get the hell out! \n\nOnce you are closer than 50 meters to the location, the view on your phone will change. There you need to point your camera at a flat surface to see the 3D puzzle. Once you solve your puzzle, on to the next location, until the game is done! \n\n After you complete one type, more puzzle types will be unlocked! \n")
                         .padding()
                     
-                    NavigationLink(destination: GenerateGameView()) {
+                    NavigationLink(destination: GameGenerationView()) {
                         Text("Start a game")
                             .textCase(.uppercase)
                             .font(Font.headline.weight(.semibold))

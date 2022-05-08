@@ -30,7 +30,7 @@ public struct MemoryCardView: UIViewRepresentable {
                 action: #selector(Coordinator.handleTap)
             )
         )
-        drawBoxes(arView: arView)
+        drawPuzzle(arView: arView)
         viewModel.updateText()
         return arView
     }
@@ -98,16 +98,17 @@ public struct MemoryCardView: UIViewRepresentable {
     
     public func updateUIView(_ uiView: ARView, context: Context) {
         if uiView.scene.anchors.count == 0 {
-            drawBoxes(arView: uiView)
+            drawPuzzle(arView: uiView)
         }
     }
     
-    private func drawBoxes(arView: ARView) {
+    private func drawPuzzle(arView: ARView) {
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [1, 1])
         arView.scene.addAnchor(anchor)
         
+        // create cards
         var cards: [Entity] = []
-        for _ in 1...(viewModel.marker.cardPairs.count*2) {
+        for _ in 1...(viewModel.puzzle.cardPairs.count*2) {
             let box = MeshResource.generateBox(width: 0.25, height: 0.02, depth: 0.25)
             let metalMaterial = SimpleMaterial(color: .brown, isMetallic: true)
             let model = ModelEntity(mesh: box, materials: [metalMaterial])
@@ -118,9 +119,6 @@ public struct MemoryCardView: UIViewRepresentable {
         }
         
         for (index,card) in cards.enumerated() {
-//            let x = Float(index % viewModel.marker.cardPairs.count)
-//            let z = Float(index / viewModel.marker.cardPairs.count)
-//            card.position = [-x*0.3, 0, z*0.3]
             card.position = viewModel.positions[index]
             anchor.addChild(card)
         }
@@ -132,9 +130,9 @@ public struct MemoryCardView: UIViewRepresentable {
         occlusionBox.position.y = -boxSize/2
         anchor.addChild(occlusionBox)
         
-        
+        // load models
         var entities: [Entity] = []
-        viewModel.marker.cardPairs.forEach { object in
+        viewModel.puzzle.cardPairs.forEach { object in
             if let entity = try? Entity.load(named: object.name) {
                 entity.name = object.name
                 entity.setScale(object.scaleForMemoryGame, relativeTo: anchor)
@@ -146,6 +144,7 @@ public struct MemoryCardView: UIViewRepresentable {
         }
         entities.shuffle()
         
+        // attach models to cards
         var index = 0
         entities.forEach { entity in
             cards[index].addChild(entity)

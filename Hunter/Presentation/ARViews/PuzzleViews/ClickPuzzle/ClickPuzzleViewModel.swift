@@ -11,9 +11,9 @@ import RealityKit
 
 class ClickPuzzleViewModel: ObservableObject {
     
-    private let delegate: MarkerDelegate
+    private let delegate: PuzzleDelegate
     
-    init(delegate: MarkerDelegate) {
+    init(delegate: PuzzleDelegate) {
         self.delegate = delegate
     }
     
@@ -22,6 +22,5 @@ class ClickPuzzleViewModel: ObservableObject {
     }
     
     func updateText() {
-//        delegate.updatePuzzleText("\(objectsCollected)/\(marker.numberToCollect) objects collected")
     }
 }
